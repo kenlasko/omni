@@ -1,0 +1,23 @@
+kind: Cluster
+name: omni-lab
+talos:
+  version: v1.6.7
+kubernetes:
+  version: 1.29.1
+features:
+  enableWorkloadProxy: true
+patches:
+  - name: cni
+    file: /home/ken/omni/patches/cni.yaml
+---
+kind: ControlPlane
+machineClass:
+  name: omni-controlplane
+  size: 3
+patches: []
+---
+kind: Workers
+name: workers
+machineClass:
+  name: omni-workers
+  size: unlimited
