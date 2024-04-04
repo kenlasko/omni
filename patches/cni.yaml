@@ -1,6 +1,6 @@
 machine:
   certSANs:
-      - kube-lab.ucdialplans.com 
+      - k3s-lab.ucdialplans.com 
   kubelet:
     extraMounts:
       - destination: /var/lib/longhorn
@@ -16,6 +16,8 @@ cluster:
     cni:
       name: none
   apiServer:
+    certSANs:
+        - k3s-lab.ucdialplans.com 
     admissionControl:
         - name: PodSecurity
           configuration:
