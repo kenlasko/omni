@@ -1,4 +1,6 @@
-machine:    
+machine:
+  certSANs:
+      - kube-lab.ucdialplans.com 
   kubelet:
     extraMounts:
       - destination: /var/lib/longhorn
