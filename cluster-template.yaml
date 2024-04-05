@@ -15,7 +15,7 @@ kind: ControlPlane
 machines:
   - 4e211131-23e7-f477-9437-94c691a76e7c  # NUC1
   - 11b61e33-615e-b264-459a-94c691a81113  # NUC2
-  - 03000200-0400-0500-0006-000700080009  # NUC3
+  - 375c6280-f387-11ee-8fd7-a05890310d00  # NUC3
 patches: []
 
 ---
@@ -49,7 +49,7 @@ patches:
 
 ---
 kind: Machine
-name: 03000200-0400-0500-0006-000700080009
+name: 375c6280-f387-11ee-8fd7-a05890310d00
 patches:
   - name: set-nodename
     inline:
