@@ -22,7 +22,7 @@ patches: []
 kind: Workers
 name: workers
 machines:
-  - 03000200-0400-0500-0006-000700080009  # NUC4
+  - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
   - 03000200-0400-0500-0006-000700080009  # NUC5
   - 03000200-0400-0500-0006-000700080009  # NUC6
 patches: []
@@ -59,7 +59,7 @@ patches:
 
 ---
 kind: Machine
-name: 03000200-0400-0500-0006-000700080009
+name: 97a2d280-f38e-11ee-980a-d4742c7d1a00
 patches:
   - name: set-nodename
     inline:
