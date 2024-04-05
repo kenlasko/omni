@@ -1,4 +1,0 @@
-kind: Machine
-name: cf52e5d3-3a4b-4515-a3f0-05436c3aab5b
-patches:
-  - file: /home/ken/omni/patches/omnilab1.yaml

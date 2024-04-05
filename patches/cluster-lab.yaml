@@ -6,11 +6,14 @@ machine:
       - destination: /var/lib/longhorn
         type: bind
         source: /var/lib/longhorn
-        # Options are fstab style mount options.
         options:
           - bind
           - rshared
           - rw
+  install:
+    disk: /dev/sda
+    extraKernelArgs:
+      - net.ifnames=0
 cluster:
   network:
     cni:
