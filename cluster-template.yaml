@@ -1,0 +1,88 @@
+kind: Cluster
+name: home
+talos:
+  version: v1.6.7
+kubernetes:
+  version: 1.29.3
+features:
+  enableWorkloadProxy: true
+patches:
+  - name: cni
+    file: /home/ken/omni/patches/cluster.yaml
+
+---
+kind: ControlPlane
+machines:
+  - 4e211131-23e7-f477-9437-94c691a76e7c
+  - 11b61e33-615e-b264-459a-94c691a81113
+  - 03000200-0400-0500-0006-000700080009
+patches: []
+
+---
+kind: Workers
+name: workers
+machines:
+  - 03000200-0400-0500-0006-000700080009
+  - 03000200-0400-0500-0006-000700080009
+  - 03000200-0400-0500-0006-000700080009
+patches: []
+
+---
+kind: Machine
+name: 4e211131-23e7-f477-9437-94c691a76e7c
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc1"
+
+---
+kind: Machine
+name: 11b61e33-615e-b264-459a-94c691a81113
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc2"
+
+---
+kind: Machine
+name: 03000200-0400-0500-0006-000700080009
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc3"
+
+---
+kind: Machine
+name: 03000200-0400-0500-0006-000700080009
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc4"
+
+---
+kind: Machine
+name: 03000200-0400-0500-0006-000700080009
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc5"
+
+---
+kind: Machine
+name: 03000200-0400-0500-0006-000700080009
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc6"
