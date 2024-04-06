@@ -23,8 +23,8 @@ kind: Workers
 name: workers
 machines:
   - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
-  - 03000200-0400-0500-0006-000700080009  # NUC5
-  - 03000200-0400-0500-0006-000700080009  # NUC6
+  - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
+  - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
 patches: []
 
 ---
@@ -69,7 +69,7 @@ patches:
 
 ---
 kind: Machine
-name: 03000200-0400-0500-0006-000700080009
+name: a0011900-f433-11ee-b7fb-0d3ea5620600
 patches:
   - name: set-nodename
     inline:
@@ -79,7 +79,7 @@ patches:
 
 ---
 kind: Machine
-name: 03000200-0400-0500-0006-000700080009
+name: 464e1e00-f436-11ee-8bb0-bd5bcd350500
 patches:
   - name: set-nodename
     inline:
