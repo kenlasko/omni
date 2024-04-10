@@ -1,3 +1,4 @@
+# Omni/Kubectl installation
 Assumes Kubectl is already installed.
 ## Install Krew
 ```
@@ -30,4 +31,6 @@ kubectl krew install oidc-login
 ## Install wslu (for browser redirection)
 ```
 sudo apt install wslu -y
-```
+
+# Omni cluster creation
+omnictl cluster template sync -f cluster.yaml

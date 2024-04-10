@@ -1,0 +1,35 @@
+kind: Cluster
+name: lab
+talos:
+  version: v1.6.7
+kubernetes:
+  version: 1.29.3
+features:
+  enableWorkloadProxy: true
+patches:
+  - name: cni
+    file: /home/ken/omni/patches/cluster-laptop.yaml
+
+---
+kind: ControlPlane
+machines:
+  - 508823d5-2468-4027-8e73-8c025ea41860
+patches: []
+
+---
+kind: Workers
+name: workers
+machines: []
+patches: []
+
+---
+kind: Machine
+name: 508823d5-2468-4027-8e73-8c025ea41860
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "laptop1"
+
+
