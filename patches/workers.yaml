@@ -1,0 +1,33 @@
+machine:
+  certSANs:
+  - kube.ucdialplans.com 
+  kubelet:
+    extraMounts:
+    - destination: /var/lib/longhorn
+      type: bind
+      source: /var/lib/longhorn
+      options:
+      - bind
+      - rshared
+      - rw
+  install:
+    disk: /dev/sda
+    extraKernelArgs:
+    - net.ifnames=0
+  registries:
+    mirrors:
+      docker.io:
+        endpoints:
+        - http://192.168.1.3:5000
+      gcr.io:
+        endpoints:
+        - http://192.168.1.3:5002
+      ghcr.io:
+        endpoints:
+        - http://192.168.1.3:5003
+      registry.k8s.io:
+        endpoints:
+        - http://192.168.1.3:5001
+      quay.io:
+        endpoints:
+        - http://192.168.1.3:5004

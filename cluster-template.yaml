@@ -7,7 +7,7 @@ kubernetes:
 features:
   enableWorkloadProxy: true
 patches:
-  - name: cni
+  - name: cluster
     file: /home/ken/omni/patches/cluster.yaml
 
 ---
@@ -16,7 +16,9 @@ machines:
   - 4e211131-23e7-f477-9437-94c691a76e7c  # NUC1
   - 11b61e33-615e-b264-459a-94c691a81113  # NUC2
   - 375c6280-f387-11ee-8fd7-a05890310d00  # NUC3
-patches: []
+patches:
+  - name: controlplane
+    file: /home/ken/omni/patches/controlplane.yaml
 
 ---
 kind: Workers
@@ -25,7 +27,9 @@ machines:
   - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
   - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
   - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
-patches: []
+patches:
+  - name: controlplane
+    file: /home/ken/omni/patches/worker.yaml
 
 ---
 kind: Machine
