@@ -17,8 +17,12 @@ machines:
   - 11b61e33-615e-b264-459a-94c691a81113  # NUC2
   - 375c6280-f387-11ee-8fd7-a05890310d00  # NUC3
 patches:
-  - name: controlplane
+  - name: controlplane-base
     file: /home/ken/omni/patches/controlplane.yaml
+  - name: certs
+    file: /home/ken/omni/patches/machine-certs-home.yaml
+  - name: registries
+    file: /home/ken/omni/patches/machine-registries.yaml
 
 ---
 kind: Workers
@@ -28,8 +32,12 @@ machines:
   - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
   - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
 patches:
-  - name: controlplane
+  - name: worker-base
     file: /home/ken/omni/patches/worker.yaml
+  - name: certs
+    file: /home/ken/omni/patches/machine-certs-home.yaml
+  - name: registries
+    file: /home/ken/omni/patches/machine-registries.yaml
 
 ---
 kind: Machine

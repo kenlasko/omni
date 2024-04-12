@@ -1,5 +1,5 @@
 kind: Cluster
-name: lab
+name: laptop
 talos:
   version: v1.6.7
 kubernetes:
@@ -14,7 +14,13 @@ patches:
 kind: ControlPlane
 machines:
   - 508823d5-2468-4027-8e73-8c025ea41860
-patches: []
+patches:
+  - name: controlplane
+    file: /home/ken/omni/patches/controlplane.yaml
+  - name: certs
+    file: /home/ken/omni/patches/machine-certs-laptop.yaml
+  - name: registries
+    file: /home/ken/omni/patches/machine-registries.yaml
 
 ---
 kind: Workers
