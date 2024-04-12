@@ -7,7 +7,7 @@ kubernetes:
 features:
   enableWorkloadProxy: true
 patches:
-  - name: cluster
+  - name: cluster-base
     file: /home/ken/omni/patches/cluster.yaml
 
 ---
