@@ -1,7 +1,7 @@
 kind: Cluster
 name: lab
 talos:
-  version: v1.6.7
+  version: v1.7.0-beta.1
 kubernetes:
   version: 1.29.3
 features:
@@ -13,11 +13,11 @@ patches:
 ---
 kind: ControlPlane
 machines:
-  - 899d9b00-98e9-4972-b9f4-1a6408cd9111
-  - a00e69ba-5e1d-470f-a217-4e9fc492cfe8
-  - 9c781809-bc2a-49c4-b0f4-020778207855
+  - 899d9b00-98e9-4972-b9f4-1a6408cd9111  # Lab1
+  - a00e69ba-5e1d-470f-a217-4e9fc492cfe8  # Lab2
+  - 9c781809-bc2a-49c4-b0f4-020778207855  # Lab3
 patches:
-  - name: controlplane
+  - name: controlplane-base
     file: /home/ken/omni/patches/controlplane.yaml
   - name: certs
     file: /home/ken/omni/patches/machine-certs-lab.yaml

@@ -1,7 +1,7 @@
 kind: Cluster
 name: laptop
 talos:
-  version: v1.6.7
+  version: v1.7.0-beta.1
 kubernetes:
   version: 1.29.3
 features:
@@ -15,7 +15,7 @@ kind: ControlPlane
 machines:
   - 508823d5-2468-4027-8e73-8c025ea41860
 patches:
-  - name: controlplane
+  - name: controlplane-base
     file: /home/ken/omni/patches/controlplane.yaml
   - name: certs
     file: /home/ken/omni/patches/machine-certs-laptop.yaml
