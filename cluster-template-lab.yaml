@@ -8,8 +8,9 @@ features:
   enableWorkloadProxy: true
 patches:
   - name: cluster-base
-    file: /home/ken/omni/patches/cluster-lab.yaml
-
+    file: /home/ken/omni/patches/cluster.yaml
+  - name: cluster-cert-sans
+    file: /home/ken/omni/patches/cert-sans-lab.yaml
 ---
 kind: ControlPlane
 machines:
