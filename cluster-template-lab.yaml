@@ -9,8 +9,8 @@ features:
 patches:
   - name: cluster-base
     file: /home/ken/omni/patches/cluster.yaml
-  - name: cluster-cert-sans
-    file: /home/ken/omni/patches/cert-sans-lab.yaml
+  - name: cluster-certs
+    file: /home/ken/omni/patches/cluster-certs-lab.yaml
     
 ---
 kind: ControlPlane
@@ -21,7 +21,7 @@ machines:
 patches:
   - name: controlplane-base
     file: /home/ken/omni/patches/controlplane.yaml
-  - name: certs
+  - name: machine-certs
     file: /home/ken/omni/patches/machine-certs-lab.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
