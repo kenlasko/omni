@@ -12,6 +12,3 @@ machine:
     disk: /dev/sda
     extraKernelArgs:
     - net.ifnames=0
-  # systemExtensions:
-  # - iscsi-tools
-  # - utils-linux-tools

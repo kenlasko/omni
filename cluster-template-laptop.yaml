@@ -23,6 +23,9 @@ patches:
     file: /home/ken/omni/patches/machine-certs-laptop.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
+systemExtensions:
+  - siderolabs/iscsi-tools
+  - siderolabs/util-linux-tools
 
 ---
 kind: Workers

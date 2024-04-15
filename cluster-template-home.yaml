@@ -40,6 +40,9 @@ patches:
     file: /home/ken/omni/patches/machine-certs-home.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
+systemExtensions:
+  - siderolabs/iscsi-tools
+  - siderolabs/util-linux-tools
 
 ---
 kind: Machine
