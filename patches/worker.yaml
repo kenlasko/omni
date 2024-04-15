@@ -8,6 +8,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/local-path
+      type: bind
+      source: /var/local-path
+      options:
+      - bind
+      - rshared
+      - rw
   install:
     disk: /dev/sda
     extraKernelArgs:
