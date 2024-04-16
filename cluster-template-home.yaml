@@ -31,6 +31,9 @@ patches:
 ---
 kind: Workers
 name: workers
+labels:
+  storage: longhorn
+  intel.feature.node.kubernetes.io/gpu: true
 machines:
   - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
   - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
