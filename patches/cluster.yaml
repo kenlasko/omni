@@ -26,11 +26,6 @@ cluster:
             runtimeClasses: []
             usernames: []
           kind: PodSecurityConfiguration
-    auditPolicy:
-      apiVersion: audit.k8s.io/v1
-      kind: Policy
-      rules:
-      - level: Metadata
   proxy:
     disabled: true
   allowSchedulingOnControlPlanes: true
