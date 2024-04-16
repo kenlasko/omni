@@ -6,6 +6,8 @@ kubernetes:
   version: 1.29.3
 features:
   enableWorkloadProxy: true
+  backupConfiguration:
+    interval: 1h
 patches:
   - name: cluster-base
     file: /home/ken/omni/patches/cluster.yaml
