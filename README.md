@@ -12,7 +12,7 @@ mv talosconfig.yaml /home/ken/.talos/config
 ```
 # Omni/Kubectl installation
 Assumes Kubectl is already installed.
-## Install Krew
+1. Install Krew
 ```
 (
   set -x; cd "$(mktemp -d)" &&
@@ -25,22 +25,22 @@ Assumes Kubectl is already installed.
 )
 ```
 
-## Add Krew to ~/.bashrc
+2. Add Krew to ~/.bashrc
 ```
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 ```
 
-## Restart shell
+3. Restart shell
 ```
 source ~/.bashrc
 ```
 
-## Install OIDC-Login in Kubectl
+4. Install OIDC-Login in Kubectl
 ```
 kubectl krew install oidc-login
 ```
 
-## Install wslu (for WSL browser redirection)
+5. Install wslu (for WSL browser redirection)
 ```
 sudo apt install wslu -y
 ```
