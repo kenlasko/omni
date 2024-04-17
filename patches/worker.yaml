@@ -8,9 +8,9 @@ machine:
       - bind
       - rshared
       - rw
-    - destination: /var/local-path
+    - destination: /var/mariadb
       type: bind
-      source: /var/local-path
+      source: /var/mariadb
       options:
       - bind
       - rshared
