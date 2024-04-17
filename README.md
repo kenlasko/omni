@@ -1,3 +1,15 @@
+# Omnictl/Talosctl installation
+1. Download omnictl and talosctl from omni.ucdialplans.com
+```
+sudo mv omnictl-linux-amd64 /usr/local/bin/omnictl
+sudo mv talosctl-linux-amd64 /usr/local/bin/talosctl
+sudo chmod u+x /usr/local/bin/omnictl /usr/local/bin/talosctl
+```
+2. Download omniconfig.yaml and talosconfig.yaml from omni.ucdialplans.com and put in proper locations
+```
+mv omniconfig.yaml /home/ken/.config/omni/config
+mv talosconfig.yaml /home/ken/.talos/config
+```
 # Omni/Kubectl installation
 Assumes Kubectl is already installed.
 ## Install Krew
@@ -33,7 +45,7 @@ kubectl krew install oidc-login
 sudo apt install wslu -y
 ```
 
-# Omni cluster creation
+# Omni cluster creation/update
 ```
-omnictl cluster template sync -f cluster.yaml
+omnictl cluster template sync -f ~/omni/cluster-(home|lab|laptop).yaml
 ```
