@@ -1,7 +1,7 @@
 kind: Cluster
 name: laptop
 talos:
-  version: v1.6.7
+  version: v1.7.0
 kubernetes:
   version: 1.29.4
 features:
