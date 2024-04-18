@@ -23,6 +23,7 @@ cluster:
               - longhorn
               - monitoring
               - netdata
+              - velero
             runtimeClasses: []
             usernames: []
           kind: PodSecurityConfiguration
