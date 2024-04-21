@@ -25,6 +25,7 @@ cluster:
               - longhorn
               - monitoring
               - netdata
+              - tailscale
               - velero
             runtimeClasses: []
             usernames: []
