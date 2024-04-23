@@ -45,6 +45,7 @@ patches:
 systemExtensions:
   - siderolabs/iscsi-tools
   - siderolabs/util-linux-tools
+  - siderolabs/i915-ucode
 
 ---
 kind: Machine
