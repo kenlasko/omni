@@ -7,7 +7,7 @@ kubernetes:
 features:
   enableWorkloadProxy: true
   backupConfiguration:
-    interval: 1h
+    interval: 4h
 patches:
   - name: cluster-base
     file: /home/ken/omni/patches/cluster.yaml
