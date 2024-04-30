@@ -1,3 +1,6 @@
 machine:
   certSANs:
-  - kube.ucdialplans.com 
+  - kube.ucdialplans.com
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true

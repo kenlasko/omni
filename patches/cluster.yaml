@@ -5,6 +5,7 @@ cluster:
   apiServer:
     admissionControl:
       - name: PodSecurity
+        kind: PodSecurityConfiguration
         configuration:
           apiVersion: pod-security.admission.config.k8s.io/v1alpha1
           defaults:
@@ -29,18 +30,20 @@ cluster:
               - velero
             runtimeClasses: []
             usernames: []
-          kind: PodSecurityConfiguration
   proxy:
     disabled: true
   allowSchedulingOnControlPlanes: true
   inlineManifests:
-    - name: local-path
-      contents: |
-        ---
-        apiVersion: storage.k8s.io/v1
-        kind: StorageClass
-        metadata:
-          name: local-path
-        provisioner: rancher.io/local-path
-        volumeBindingMode: WaitForFirstConsumer
-        reclaimPolicy: Retain
+  - name: local-path
+    contents: |
+      ---
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: local-path
+      provisioner: rancher.io/local-path
+      volumeBindingMode: WaitForFirstConsumer
+      reclaimPolicy: Retain
+  # extraManifests:
+  # - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+  # - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
