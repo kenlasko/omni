@@ -5,7 +5,6 @@ cluster:
   apiServer:
     admissionControl:
       - name: PodSecurity
-        kind: PodSecurityConfiguration
         configuration:
           apiVersion: pod-security.admission.config.k8s.io/v1alpha1
           defaults:
@@ -30,6 +29,7 @@ cluster:
               - velero
             runtimeClasses: []
             usernames: []
+          kind: PodSecurityConfiguration
   proxy:
     disabled: true
   allowSchedulingOnControlPlanes: true
