@@ -19,12 +19,10 @@ cluster:
               - cert-manager
               - cilium
               - cilium-test
-              - falco
               - homeassist
               - intel-gpu
               - longhorn
               - monitoring
-              - netdata
               - tailscale
               - velero
             runtimeClasses: []
