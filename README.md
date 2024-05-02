@@ -13,13 +13,13 @@ I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
 3. Make sure omni.ucdialplans.com is added to whatever is being used to serve DNS
 
 # Omnictl/Talosctl installation
-1. Download omnictl and talosctl from https://omni.ucdialplans.com and put in proper locations
+1. Download omnictl and talosctl from https://omni.ucdialplans.com and put in proper locations on your workstation.
 ```
 sudo mv omnictl-linux-amd64 /usr/local/bin/omnictl
 sudo mv talosctl-linux-amd64 /usr/local/bin/talosctl
 sudo chmod u+x /usr/local/bin/omnictl /usr/local/bin/talosctl
 ```
-2. Download omniconfig.yaml and talosconfig.yaml from omni.ucdialplans.com and put in proper locations
+2. Download omniconfig.yaml and talosconfig.yaml from omni.ucdialplans.com and put in proper locations on your workstation.
 ```
 mv omniconfig.yaml /home/ken/.config/omni/config
 mv talosconfig.yaml /home/ken/.talos/config
@@ -54,7 +54,7 @@ source ~/.bashrc
 kubectl krew install oidc-login
 ```
 
-5. Install wslu (for WSL browser redirection)
+5. Install wslu (for WSL browser redirection, if your workstation is using Windows Subsystem for Linux)
 ```
 sudo apt install wslu -y
 ```
@@ -64,7 +64,9 @@ Make sure all nodes are up and running in maintenance mode and are visible in ht
 
 You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs.
 
-If any of your machine GUIDs are not randomly assigned and the BIOS is American Megatrends (AMI)-based, you may be able to create a bootable USB from the files in [uuid-gen] to set a random machine GUID.
+I setup a pass-through container cache in Docker on my NAS, which is defined in [machine-registries.yaml](patches/machine-registries.yaml). You probably won't be using this.
+
+If any of your machine GUIDs are not randomly assigned and the BIOS is American Megatrends (AMI)-based, you may be able to create a bootable USB from the files in [uuid-gen](uuid-gen) to set a random machine GUID.
 
 I used PXEBoot and Matchbox for this. I will publish how I did this some other time.
 ```
