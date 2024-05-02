@@ -62,7 +62,7 @@ sudo apt install wslu -y
 # Omni cluster creation/update
 Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com
 
-You will need to modify the machine GUIDs in [cluster-template-home.yaml] to suit your needs.
+You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs.
 
 If any of your machine GUIDs are not randomly assigned and the BIOS is American Megatrends (AMI)-based, you may be able to create a bootable USB from the files in [uuid-gen] to set a random machine GUID.
 
