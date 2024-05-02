@@ -1,5 +1,10 @@
 # Introduction
-This repository is used to install a Talos Kubernetes cluster using on-prem Omni. Most of these steps should work without modification. Obviously paths and domain names should change as required.
+This repository is used to install a Talos Kubernetes cluster using on-prem Omni in a declarative manner. Most of these steps should work without modification. Obviously paths and domain names should change as required.
+
+In my situation, I have 6 NUCs/mini-PCs that I use for my cluster. Three are old Intel NUCs that are used as control planes. The other 3 are Beelink mini-PCs. My desire was to setup an easily reproducible Talos Kubernetes cluster and maintain my creative node name strategy of NUC1 through NUC6. 
+
+Once complete, you will have a Kubernetes cluster running the latest Kubernetes flavour, but without a CNI. This means your cluster won't actually be running until a CNI is installed. I used Cilium for my cluster following [these steps](https://www.talos.dev/v1.7/kubernetes-guides/network/deploying-cilium/).
+
 
 # Omni On-Prem Installation
 I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
@@ -8,7 +13,7 @@ I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
 3. Make sure omni.ucdialplans.com is added to whatever is being used to serve DNS
 
 # Omnictl/Talosctl installation
-1. Download omnictl and talosctl from omni.ucdialplans.com and put in proper locations
+1. Download omnictl and talosctl from https://omni.ucdialplans.com and put in proper locations
 ```
 sudo mv omnictl-linux-amd64 /usr/local/bin/omnictl
 sudo mv talosctl-linux-amd64 /usr/local/bin/talosctl
@@ -55,6 +60,19 @@ sudo apt install wslu -y
 ```
 
 # Omni cluster creation/update
+Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com
+
+You will need to modify the machine GUIDs in [cluster-template-home.yaml] to suit your needs.
+
+If any of your machine GUIDs are not randomly assigned and the BIOS is American Megatrends (AMI)-based, you may be able to create a bootable USB from the files in [uuid-gen] to set a random machine GUID.
+
+I used PXEBoot and Matchbox for this. I will publish how I did this some other time.
 ```
 omnictl cluster template sync -f ~/omni/cluster-(home|lab|laptop).yaml
 ```
+Then install Cilium using whatever method you desire. In my case, I used an Ansible script to install the core apps that would allow me to log into ArgoCD and install everything else:
+- Cilium
+- External Secrets
+- Cert Manager
+
+The repo that contains all that is currently private. I may expose it once I'm confident all secrets are gone.
