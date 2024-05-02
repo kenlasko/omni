@@ -62,13 +62,15 @@ sudo apt install wslu -y
 # Omni cluster creation/update
 Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com
 
-You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs.
+You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs. I have multiple cluster templates for home, lab and laptop to test various things. You may not need all this.
 
 I setup a pass-through container cache in Docker on my NAS, which is defined in [machine-registries.yaml](patches/machine-registries.yaml). You probably won't be using this.
 
 If any of your machine GUIDs are not randomly assigned and the BIOS is American Megatrends (AMI)-based, you may be able to create a bootable USB from the files in [uuid-gen](uuid-gen) to set a random machine GUID.
 
 I used PXEBoot and Matchbox for this. I will publish how I did this some other time.
+
+Once you're ready for creating your cluster, run the below command from your workstation. Yep, that's it.
 ```
 omnictl cluster template sync -f ~/omni/cluster-(home|lab|laptop).yaml
 ```
