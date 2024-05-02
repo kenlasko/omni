@@ -1,5 +1,14 @@
+# Introduction
+This repository is used to install a Talos Kubernetes cluster using on-prem Omni. Most of these steps should work without modification. Obviously paths and domain names should change as required.
+
+# Omni On-Prem Installation
+I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
+1. Follow the [Omni on-prem install instructions](https://omni.siderolabs.com/docs/how-to-guides/how-to-deploy-omni-on-prem/).
+2. Configure [docker-compose.yaml](docker-compose.yaml) file
+3. Make sure omni.ucdialplans.com is added to whatever is being used to serve DNS
+
 # Omnictl/Talosctl installation
-1. Download omnictl and talosctl from omni.ucdialplans.com
+1. Download omnictl and talosctl from omni.ucdialplans.com and put in proper locations
 ```
 sudo mv omnictl-linux-amd64 /usr/local/bin/omnictl
 sudo mv talosctl-linux-amd64 /usr/local/bin/talosctl

@@ -1,7 +1,8 @@
 version: '3.8'
+
 services:
   omni:
-    image: ghcr.io/siderolabs/omni:v0.33.2
+    image: ghcr.io/siderolabs/omni:v0.34.0
     container_name: omni
     restart: unless-stopped
     network_mode: host
@@ -29,7 +30,8 @@ services:
       - --initial-users=ken.lasko@gmail.com
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.omni.rule=Host(`omni.ucdialplans.com`)"
+#      - "traefik.http.routers.omni.rule=HostRegexp(`{sub:.*}?omni.ucdialplans.com`)"
+      - "traefik.http.routers.omni.rule=HostRegexp(`omni.ucdialplans.com`)"
       - "traefik.http.routers.omni.entrypoints=websecure"
       - "traefik.http.routers.omni.tls=true"
       - "traefik.http.services.omni.loadbalancer.server.port=4443"
@@ -40,3 +42,63 @@ services:
       - ./certs/star_ucdialplans_com.key:/tls.key
       - ./omni/omni.asc:/omni.asc
       - /dev/net/tun:/dev/net/tun
+
+  traefik:
+    container_name: traefik
+    image: traefik
+    restart: always
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --providers.docker
+      - --providers.file.directory=/configuration/
+      - --providers.file.watch=true
+      - --api
+      - --serversTransport.insecureSkipVerify=true
+      - --metrics.prometheus.addrouterslabels=true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./certs:/certs"
+      - "./traefik/config:/configuration"
+      - "./traefik/logs/traefik.log:/var/log/traefik.log"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '300M'
+    labels:
+      # Dashboard
+      - "traefik.http.routers.traefik.rule=Host(`traefik-rpi1.ucdialplans.com`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls=true"
+
+      # global redirect to https
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+
+      # middleware redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+
+      # other stuff
+      - "org.label-schema.group=rpi1-container"
+
+    extra_hosts: 
+      - host.docker.internal:172.19.0.1
+    networks:
+      - ipv6
+
+networks:
+  ipv6:
+    enable_ipv6: false
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/24
+          gateway: 172.19.0.1
