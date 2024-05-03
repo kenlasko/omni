@@ -91,6 +91,7 @@ Host myhost
 ```
 Add ```- --skip-open-browser``` to the Omni user account in the ```Users:``` section of your ```~/.kube/config``` for Omni as in the example below:
 ```
+users:
 - name: onprem-omni-home-ken.lasko@gmail.com
   user:
     exec:
