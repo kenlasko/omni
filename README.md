@@ -63,7 +63,25 @@ Host myhost
   LocalForward 8000 127.0.0.1:8000
   LocalForward 18000 127.0.0.1:18000
 ```
+Add ```- --skip-open-browser``` to the Omni user account in the ```Users:``` section of your ```~/.kube/config``` for Omni as in the example below:
+```
+- name: onprem-omni-home-ken.lasko@gmail.com
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - oidc-login
+      - get-token
+      - --oidc-issuer-url=https://omni.ucdialplans.com/oidc
+      - --oidc-client-id=native
+      - --oidc-extra-scope=cluster:home
+      - --skip-open-browser
+      command: kubectl
+      env: null
+      interactiveMode: IfAvailable
+      provideClusterInfo: false
 
+```
 
 # Omni cluster creation/update
 Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com
