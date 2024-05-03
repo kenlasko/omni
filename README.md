@@ -39,25 +39,31 @@ Assumes Kubectl is already installed.
 )
 ```
 
-2. Add Krew to ~/.bashrc
+2. Add Krew to ~/.bashrc and restart shell
 ```
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-```
-
-3. Restart shell
-```
 source ~/.bashrc
 ```
 
-4. Install OIDC-Login in Kubectl
+3. Install OIDC-Login in Kubectl
 ```
 kubectl krew install oidc-login
 ```
 
-5. Install wslu (for WSL browser redirection, if your workstation is using Windows Subsystem for Linux)
+## Using Windows Subsystem for Linux
+Install wslu (for WSL browser redirection)
 ```
 sudo apt install wslu -y
 ```
+
+## Using remote SSH shell for kubectl
+If you're using a remote SSH shell to connect to the cluster, add the following to your ```~/.ssh/config```
+```
+Host myhost
+  LocalForward 8000 127.0.0.1:8000
+  LocalForward 18000 127.0.0.1:18000
+```
+
 
 # Omni cluster creation/update
 Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com
