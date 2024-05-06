@@ -15,6 +15,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/mariadb-galera
+      type: bind
+      source: /var/mariadb-galera
+      options:
+      - bind
+      - rshared
+      - rw
   install:
     extraKernelArgs:
     - net.ifnames=0
