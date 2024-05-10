@@ -22,6 +22,8 @@ machine:
       - bind
       - rshared
       - rw
+    # extraArgs:
+    #   rotate-server-certificates: true
   install:
     extraKernelArgs:
     - net.ifnames=0

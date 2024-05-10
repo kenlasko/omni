@@ -8,6 +8,8 @@ machine:
       - bind
       - rshared
       - rw
+    # extraArgs:
+    #   rotate-server-certificates: true
   install:
     disk: /dev/sda
     extraKernelArgs:
