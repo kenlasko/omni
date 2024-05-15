@@ -113,7 +113,8 @@ It is important to backup the Omni etcd database as well as the omni.asc key in 
 sudo apt install etcd-client
 ```
 ## Sample Backup Script
-This script takes a snapshot of the etcd database as well as the entire contents of the Omni folder. Keeps daily, weekly and monthly backups. This goes to a NAS folder mount
+This script takes a snapshot of the etcd database as well as the entire contents of the Omni folder. Keeps daily, weekly and monthly backups. This example goes to a NAS folder mount. 
+Add to crontab to run it daily.
 ```
 #!/bin/sh
 
