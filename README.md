@@ -105,7 +105,7 @@ users:
       provideClusterInfo: false
 ```
 
-# Omni Backup
+# Omni Backup/Restore
 It is important to backup the Omni etcd database as well as the omni.asc key in case of disaster. Here is a simple script to back this up. Requires installation of etcdctl client.
 
 ## Installing etcdctl client on Ubuntu/Raspbian
