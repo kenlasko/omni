@@ -27,3 +27,6 @@ machine:
   install:
     extraKernelArgs:
     - net.ifnames=0
+  nodeLabels:
+    storage: longhorn
+    intel.feature.node.kubernetes.io/gpu: true
