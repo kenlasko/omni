@@ -85,6 +85,10 @@ Host myhost
   LocalForward 8000 127.0.0.1:8000
   LocalForward 18000 127.0.0.1:18000
 ```
+Or alternatively, connect directly via SSH using:
+```
+ssh -i "~/.ssh/id_rsa" ken@rpi1. -L 8000:localhost:8000
+```
 Add ```- --skip-open-browser``` to the Omni user account in the ```Users:``` section of your ```~/.kube/config``` for Omni as in the example below:
 ```
 users:
