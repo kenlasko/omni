@@ -11,6 +11,10 @@ services:
     command:
       - --account-id=***REMOVED***
       - --name=onprem-omni
+      - --cert=/tls.crt
+      - --key=/tls.key
+      - --siderolink-api-cert=/tls.crt
+      - --siderolink-api-key=/tls.key
       - --private-key-source=file:///omni.asc
       - --event-sink-port=8091
       - --bind-addr=0.0.0.0:4443
@@ -30,8 +34,11 @@ services:
       - "traefik.http.routers.omni.entrypoints=websecure"
       - "traefik.http.routers.omni.tls=true"
       - "traefik.http.services.omni.loadbalancer.server.port=4443"
+      - "traefik.http.services.omni.loadbalancer.server.scheme=https"
     volumes:
       - ./omni/etcd:/_out/etcd
+      - ./certs/star_ucdialplans_com.pem:/tls.crt
+      - ./certs/star_ucdialplans_com.key:/tls.key
       - ./omni/omni.asc:/omni.asc
       - /dev/net/tun:/dev/net/tun
 
