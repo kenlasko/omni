@@ -1,8 +1,33 @@
-version: '3.8'
-
 services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard
+    hostname: rpi1
+    restart: unless-stopped
+    network_mode: host
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguard.rule=Host(`adguard-rpi1.ucdialplans.com`)"
+      - "traefik.http.routers.adguard.entrypoints=websecure"
+      - "traefik.http.routers.adguard.tls=true"
+      - "traefik.http.routers.adguard.tls.certresolver=letsencrypt"
+      - "traefik.http.services.adguard.loadbalancer.server.port=3000"
+    volumes:
+      - ./adguard/conf:/opt/adguardhome/conf
+      - ./adguard/work:/opt/adguardhome/work
+
+
+  dumpcerts:
+    image: registry.ucdialplans.com/dumpcerts:latest
+    container_name: dumpcerts
+    restart: always
+    command: "/certs/acme.json /certs"
+    volumes:
+      - ./certs:/certs 
+
+
   omni:
-    image: ghcr.io/siderolabs/omni:v0.37.1
+    image: ghcr.io/siderolabs/omni:v0.37.4
     container_name: omni
     restart: unless-stopped
     network_mode: host
@@ -33,6 +58,7 @@ services:
       - "traefik.http.routers.omni.rule=HostRegexp(`omni.ucdialplans.com`)"
       - "traefik.http.routers.omni.entrypoints=websecure"
       - "traefik.http.routers.omni.tls=true"
+      - "traefik.http.routers.omni.tls.certresolver=letsencrypt"
       - "traefik.http.services.omni.loadbalancer.server.port=4443"
       - "traefik.http.services.omni.loadbalancer.server.scheme=https"
     volumes:
@@ -42,6 +68,18 @@ services:
       - ./omni/omni.asc:/omni.asc
       - /dev/net/tun:/dev/net/tun
 
+
+  portainer-agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    restart: always
+    ports:
+      - 9001:9001    
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+
+
   traefik:
     container_name: traefik
     image: traefik
@@ -49,48 +87,69 @@ services:
     command:
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
-      - --providers.docker
-      - --providers.file.directory=/configuration/
-      - --providers.file.watch=true
-      - --api
+      - --providers.docker=true
+      - --api.dashboard=true
+      - --log.level=INFO
+      - --log.filePath=/var/log/traefik.log
       - --serversTransport.insecureSkipVerify=true
-      - --metrics.prometheus.addrouterslabels=true
+      # Set up LetsEncrypt
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare
+      - --certificatesresolvers.letsencrypt.acme.email=ken.lasko@gmail.com
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      # Set up an insecure listener that redirects all traffic to TLS
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      # Set up the TLS configuration for our websecure listener
+      - --entrypoints.websecure.http.tls=true
+      - --entrypoints.websecure.http.tls.certResolver=letsencrypt
+      - --entrypoints.websecure.http.tls.domains[0].main=*.ucdialplans.com
+    environment:
+      - CLOUDFLARE_EMAIL=ken.lasko@gmail.com
+      - CLOUDFLARE_DNS_API_TOKEN=***REMOVED***
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./certs:/certs"
-      - "./traefik/config:/configuration"
+      - "./certs:/letsencrypt"
       - "./traefik/logs/traefik.log:/var/log/traefik.log"
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: '300M'
     labels:
       # Dashboard
-      - "traefik.http.routers.traefik.rule=Host(`traefik-rpi1.ucdialplans.com`)"
-      - "traefik.http.routers.traefik.service=api@internal"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - "traefik.enable=true"
+      - 'traefik.http.routers.traefik.rule=Host(`traefik-rpi1.ucdialplans.com`)'
       - "traefik.http.routers.traefik.entrypoints=websecure"
-      - "traefik.http.routers.traefik.tls=true"
-
-      # global redirect to https
-      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
-      - "traefik.http.routers.http-catchall.entrypoints=web"
-      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
-
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - 'traefik.http.routers.traefik.middlewares=strip'
+      - 'traefik.http.middlewares.strip.stripprefix.prefixes=/traefik'
       # middleware redirect
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-
-      # other stuff
-      - "org.label-schema.group=rpi1-container"
-
     extra_hosts: 
       - host.docker.internal:172.19.0.1
     networks:
       - ipv6
+
+
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower:armhf-latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 */12 * * *" --cleanup
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '30M'
+    labels:
+      - "org.label-schema.group=rpi1-container"
+    networks:
+      - ipv6
+
 
 networks:
   ipv6:
@@ -101,3 +160,4 @@ networks:
       config:
         - subnet: 172.19.0.0/24
           gateway: 172.19.0.1
+
