@@ -17,17 +17,19 @@ services:
       - ./adguard/work:/opt/adguardhome/work
 
 
+  # This container is used to convert the LetsEncrypt certs in acme.json to PEM files
+  # that can be used by Omni (and any other program that requires access to PEM certs)
   dumpcerts:
     image: registry.ucdialplans.com/dumpcerts:latest
     container_name: dumpcerts
     restart: always
     command: "/certs/acme.json /certs"
     volumes:
-      - ./certs:/certs 
+      - ./certs:/certs
 
 
   omni:
-    image: ghcr.io/siderolabs/omni:v0.37.4
+    image: ghcr.io/siderolabs/omni:v0.37.5
     container_name: omni
     restart: unless-stopped
     network_mode: host
@@ -74,7 +76,7 @@ services:
     image: portainer/agent
     restart: always
     ports:
-      - 9001:9001    
+      - 9001:9001
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
@@ -127,7 +129,7 @@ services:
       - 'traefik.http.middlewares.strip.stripprefix.prefixes=/traefik'
       # middleware redirect
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-    extra_hosts: 
+    extra_hosts:
       - host.docker.internal:172.19.0.1
     networks:
       - ipv6
