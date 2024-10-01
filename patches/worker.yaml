@@ -22,6 +22,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/postgres
+      type: bind
+      source: /var/postgres
+      options:
+      - bind
+      - rshared
+      - rw
     extraArgs:
       rotate-server-certificates: true
   install:
