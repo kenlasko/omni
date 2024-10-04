@@ -21,10 +21,10 @@ sudo chmod u+x /usr/local/bin/omnictl /usr/local/bin/talosctl
 ```
 2. Download omniconfig.yaml and talosconfig.yaml from omni.ucdialplans.com and put in proper locations on your workstation.
 ```
-mkdir -p /home/ken/.config/omni/
-mkdir -p /home/ken/.talos/
-mv omniconfig.yaml /home/ken/.config/omni/config
-mv talosconfig.yaml /home/ken/.talos/config
+mkdir -p ~/.config/omni/
+mkdir -p ~/.talos/
+cp ~/omni/omniconfig.yaml ~/.config/omni/config
+cp ~/omni/talosconfig.yaml ~/.talos/config
 ```
 # Omni/Kubectl installation
 Assumes Kubectl is already installed.
