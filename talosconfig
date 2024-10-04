@@ -1,0 +1,9 @@
+context: onprem-omni
+contexts:
+    onprem-omni:
+        endpoints:
+            - https://omni.ucdialplans.com/
+        auth:
+            siderov1:
+                identity: ken.lasko@gmail.com
+        cluster: home
