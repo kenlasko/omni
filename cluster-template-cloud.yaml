@@ -1,0 +1,41 @@
+kind: Cluster
+name: cloud
+talos:
+  version: v1.8.1
+kubernetes:
+  version: 1.31.1
+features:
+  enableWorkloadProxy: false
+  # backupConfiguration:
+  #   interval: 12h
+patches:
+  - name: cluster-base
+    file: /home/ken/omni/patches/cluster.yaml
+  - name: cluster-certs
+    file: /home/ken/omni/patches/cluster-certs-cloud.yaml
+
+---
+kind: ControlPlane
+machines:
+  - f9ccb1a6-9fa4-4a26-a25d-643e4c06d1d4  # talos-omni
+patches:
+  - name: controlplane-base
+    file: /home/ken/omni/patches/controlplane-cloud.yaml
+  - name: machine-certs
+    file: /home/ken/omni/patches/machine-certs-cloud.yaml
+
+---
+kind: Workers
+name: workers
+machines: []
+patches: []
+
+---
+kind: Machine
+name: f9ccb1a6-9fa4-4a26-a25d-643e4c06d1d4
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "onode1"

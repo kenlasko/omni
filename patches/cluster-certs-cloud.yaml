@@ -1,0 +1,4 @@
+cluster:
+  apiServer:
+    certSANs:
+    - cloud-kube.ucdialplans.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required.

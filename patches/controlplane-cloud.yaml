@@ -1,0 +1,16 @@
+machine:
+  kubelet:
+    extraMounts:
+    - destination: /var/mariadb
+      type: bind
+      source: /var/mariadb
+      options:
+      - bind
+      - rshared
+      - rw
+    extraArgs:
+      rotate-server-certificates: true
+  install:
+    disk: /dev/oracleoci/oraclevda
+    extraKernelArgs:
+    - net.ifnames=0
