@@ -1,6 +1,34 @@
 machine:
   kubelet:
     extraMounts:
+    - destination: /var/adguard/conf
+      type: bind
+      source: /var/adguard/conf
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/adguard/work
+      type: bind
+      source: /var/adguard/work
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/alertmanager
+      type: bind
+      source: /var/alertmanager
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/grafana
+      type: bind
+      source: /var/grafana
+      options:
+      - bind
+      - rshared
+      - rw
     - destination: /var/mariadb
       type: bind
       source: /var/mariadb
@@ -8,9 +36,50 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/pgadmin
+      type: bind
+      source: /var/pgadmin
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/postgres
+      type: bind
+      source: /var/postgres
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/prometheus
+      type: bind
+      source: /var/prometheus
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/registry
+      type: bind
+      source: /var/registry
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/uptime-kuma
+      type: bind
+      source: /var/uptime-kuma
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/vaultwarden
+      type: bind
+      source: /var/vaultwarden
+      options:
+      - bind
+      - rshared
+      - rw
     extraArgs:
       rotate-server-certificates: true
   install:
-    # disk: /dev/oracleoci/                               
     extraKernelArgs:
     - net.ifnames=0
