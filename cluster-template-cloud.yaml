@@ -17,7 +17,7 @@ patches:
 ---
 kind: ControlPlane
 machines:
-  - f9ccb1a6-9fa4-4a26-a25d-643e4c06d1d4  # talos-omni
+  - a8e826e3-4522-4c5c-a5c1-6080e9deec9e  # talos-omni
 patches:
   - name: controlplane-base
     file: /home/ken/omni/patches/controlplane-cloud.yaml
@@ -30,12 +30,3 @@ name: workers
 machines: []
 patches: []
 
----
-kind: Machine
-name: f9ccb1a6-9fa4-4a26-a25d-643e4c06d1d4
-patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "onode1"

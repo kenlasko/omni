@@ -11,6 +11,6 @@ machine:
     extraArgs:
       rotate-server-certificates: true
   install:
-    disk: /dev/oracleoci/oraclevda
+    # disk: /dev/oracleoci/                               
     extraKernelArgs:
     - net.ifnames=0
