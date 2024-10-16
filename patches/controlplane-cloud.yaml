@@ -34,6 +34,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/keel
+      type: bind
+      source: /var/keel
+      options:
+      - bind
+      - rshared
+      - rw
     - destination: /var/mariadb
       type: bind
       source: /var/mariadb
