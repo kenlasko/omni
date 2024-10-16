@@ -1,4 +1,9 @@
 machine:
+  # network:
+  #   interfaces:
+  #   - interface: eth0
+  #     addresses:
+  #     - 10.0.0.153/24
   kubelet:
     extraMounts:
     - destination: /var/adguard/conf
