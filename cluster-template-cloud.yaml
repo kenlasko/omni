@@ -10,7 +10,7 @@ features:
   #   interval: 12h
 patches:
   - name: cluster-base
-    file: /home/ken/omni/patches/cluster-cloud.yaml
+    file: /home/ken/omni/patches/cluster.yaml
   - name: cluster-certs
     file: /home/ken/omni/patches/cluster-certs-cloud.yaml
 
