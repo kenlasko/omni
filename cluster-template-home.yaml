@@ -5,7 +5,7 @@ talos:
 kubernetes:
   version: 1.31.1
 features:
-  enableWorkloadProxy: false
+  enableWorkloadProxy: true
   backupConfiguration:
     interval: 12h
 patches:
