@@ -10,7 +10,10 @@ Once complete, you will have a Kubernetes cluster running the latest Kubernetes 
 I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
 1. Follow the [Omni on-prem install instructions](https://omni.siderolabs.com/how-to-guides/self_hosted).
 2. Configure [docker-compose.yaml](docker-compose.yaml) file
-3. Make sure omni.ucdialplans.com is added to whatever is being used to serve DNS
+3. Make sure an A record pointing to `omni.ucdialplans.com` is added to whatever is being used to serve DNS
+
+# PXEBoot Configuration
+Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [PXEBoot Configuration](https://github.com/kenlasko/pxeboot) instructions to configure
 
 # Omnictl/Talosctl installation
 1. Download omnictl and talosctl from https://omni.ucdialplans.com and put in proper locations on your workstation.
@@ -59,15 +62,13 @@ sudo apt install wslu -y
 ```
 
 # Omni cluster creation/update
-Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com
+Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com. I did this via [PXEBoot](https://github.com/kenlasko/pxeboot).
 
 You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs. I have multiple cluster templates for home, lab and laptop to test various things. You may not need all this.
 
 I setup a pass-through container cache in Docker on my NAS, which is defined in [machine-registries.yaml](patches/machine-registries.yaml). You probably won't be using this.
 
 If any of your machine GUIDs are not randomly assigned and the BIOS is American Megatrends (AMI)-based, you may be able to create a bootable USB from the files in [uuid-gen](uuid-gen) to set a random machine GUID.
-
-I used PXEBoot and Matchbox for this. I will publish how I did this some other time.
 
 Once you're ready for creating your cluster, run the below command from your workstation. Yep, that's it.
 ```
