@@ -32,6 +32,8 @@ cluster:
   proxy:
     disabled: true
   allowSchedulingOnControlPlanes: true
+  extraManifests:
+  - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
   inlineManifests:
   - name: local-path
     contents: |
@@ -43,5 +45,3 @@ cluster:
       provisioner: rancher.io/local-path
       volumeBindingMode: WaitForFirstConsumer
       reclaimPolicy: Retain
-  extraManifests:
-  - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml

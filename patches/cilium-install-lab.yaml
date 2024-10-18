@@ -1,0 +1,269 @@
+inlineManifests:
+- name: cilium-install
+  contents: |
+    ---
+    kind: Namespace
+    apiVersion: v1
+    metadata:
+      name: cilium
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: cilium-values
+      namespace: cilium
+    data:
+      values.yaml: |
+        rollOutCiliumPods: true
+        # routingMode: native             # Original
+        routingMode: tunnel               # New
+        tunnelProtocol: geneve            # New
+        ipv4NativeRoutingCIDR: 10.0.0.0/9
+        # autoDirectNodeRoutes: true      # Original
+        # tunnel: disabled                # Original
+        bpf:
+          hostRouting: true
+          masquerade: true
+        ipam:
+          mode: kubernetes
+        cluster:
+          name: lab
+          id: 2
+        loadBalancer:                     # New
+          mode: dsr                       # New
+          dsrDispatch: geneve             # New
+        l2announcements:
+          enabled: true
+          leaseDuration: 6s
+          leaseRenewDeadline: 2s
+          leaseRetryPeriod: 200ms
+        envoy:
+          enabled: false
+          rollOutPods: true
+        externalIPs:
+          enabled: true
+        extraEnv:
+        - name: TZ
+          value: "America/Toronto"
+        kubeProxyReplacement: true
+        k8sServiceHost: localhost
+        k8sServicePort: 7445
+        securityContext:
+          capabilities:
+            ciliumAgent: 
+            - CHOWN
+            - KILL
+            - NET_ADMIN
+            - NET_RAW 
+            - IPC_LOCK
+            - SYS_ADMIN
+            - SYS_RESOURCE
+            - DAC_OVERRIDE
+            - FOWNER
+            - SETGID
+            - SETUID
+            cleanCiliumState: 
+            - NET_ADMIN
+            - SYS_ADMIN
+            - SYS_RESOURCE
+        cgroup:
+          autoMount:
+            enabled: false
+          hostRoot: /sys/fs/cgroup
+        resources:
+          requests:
+            cpu: 100m
+            memory: 250Mi
+          limits:
+            cpu: 400m
+            memory: 400Mi
+
+        hubble:
+          peerService:
+            clusterDomain: cluster.local
+          relay:
+            enabled: true
+            resources:
+              requests:
+                cpu: 15m
+                memory: 25Mi
+              limits:
+                cpu: 50m
+                memory: 50Mi   
+            affinity:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: DoesNotExist
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values: 
+                      - 'amd64'
+          ui:
+            enabled: true
+            affinity:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: DoesNotExist
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values: 
+                      - 'amd64'
+            service:
+              annotations:
+                omni-kube-service-exposer.sidero.dev/port: "50080"
+                omni-kube-service-exposer.sidero.dev/label: Hubble
+                omni-kube-service-exposer.sidero.dev/icon: |
+                  H4sICGhdJmYAA2h1YmJsZS5zdmcAdVjPbxxFE73zV4yWC98h467urq4uhJHIfKA9bCROPviCEDG2
+                  JZNEicHhv+e96pl1vAuXOG+muuv3q5r97tNft9PnPx7efbrc3T0+fvj24uLp6Wl+KvP7j7cXOaV0
+                  AYnd9Pv9w8Pl7t37dze76a/7m6fX7z9f7nKeS6qpdc259uJ1SnOuU2tzs1ysdSutSeuTpbnvpk+P
+                  fz/cXO7++PXzq7ub+9u7x28nTenD5930dP/28e5yd3ZwNw3By13c8P1X391Ovz3cf3j14VfK//nx
+                  4ZuvidMvKmq/SM3V/0cxvl9t/vrHXlJJu+nt5e5NrbN271PROSdrB02ziE5Z5+Jq+yazNM0HGuKp
+                  HMXW51PVOYnrfhw7nNx2vbs4Ud1euyz2UnVLc0tFNtX4Yy7lTPUmtqlGAKqcaV6lzjX/5EuRn15q
+                  9rlLlrJpTjOymwvirGfaN9FNu/jccj3VvkqdazfXH37QoT2u1DJVm3GzHyzPOac6lT4nz/te5myp
+                  HXpHHNSOYuvzSW020b5fjx1OrvsXz8VqLi91o1BVcHjTLRnPu54p3+Q25QUFnnM5U77KnSt3W1rx
+                  oRxC1XM+epThsFjZHC8+p2YjmJ7bUWx9fnR8PXY4ue5c9+L/f23ppe7NoU335vip8k1uU745fqr8
+                  vxx/urt/vBmqBSXZJE/eZsldFhGqlMCFpZRnK1KIsxadpMxW8Re49uSL1NlQ0sTgAcgrVFZgm5M6
+                  XGggnVyIq+Z2JQmd4bpArmZFboHDVbhW4JqjSt0a9bRslbg15Il25ObEtRWck9klXhfBY8DELlnx
+                  ArckuRzfO5gusQfW430u4KxQZxnmwLqSS9znrjrRm1TKtJo76ey5qgDLnBcQSDYbyFF4FURYaEXK
+                  pAfgLILnkgreo7dnXNboLBgp2wTfknRiRBHBf8ZIYKf8hmk3ChsxbyhkXDpX9HtFSTa+h9u11qXi
+                  lpRgD6LE+yprjvoRxSIC67V6JebJsiC33REt4q4gfHBLTh0YWRED7qZeA/fclz73otWAGycGYlSg
+                  P2CtvAb39bZh5gpeyPP7PDvqNnDpxtx6Xd8La45WtBzqvLGErK7aw8tGNgtYVK9EOo1ceFkrPNVn
+                  bSGWpPbAZrylJasBXToLjrLRMVNUbZSNw4JMLBpnUS8FFiED6gNXC4uldAmsxehR9UgAsOsBebGu
+                  Aa3KwkvSCpswnL2srzF7UVzoyj60oy6inDQNU1VZTig99oTgJKxC+ND1I15I44Kiix6NeOE+hN9a
+                  6ZFONOHElm7CZmX+sy6YHQh4bxoV09F2rzD6Sy2mUVM55S+foArBysuXTxq7nDKwm5lHIRfrXCBa
+                  iuSkylugSbPU6lH6CSWXkHow/Nor6DiB85AInMwX1EpTFgmJAEUCylM6z04FmaH2izGtjqw2VdQ6
+                  eAXngUXdEayemWcQTKvKTm2FtgLDehA8StDdSFA9ZyYjO3qfWDOKENekHvwHCu2H4MOQTh2rxAk9
+                  XpOqc/AZ/ChqVx3MgdLYYyfp2DWu1uf7VW4cGL2EUjO/wk1oZo8D1kCIfO7tcCJ3/abA86KjBsX7
+                  FecA8q9FjmdORK65OxSk7Mw6TiHsXEfrVrlxgDx6al0FEaX+bN2J3PWbRibJo6NMOUeRl7WDDCY1
+                  5BV5CYzmxGaSko+Sr6ku2ISk2XofWl/RMrp2axfsEegEZ+MBowIX5RhNPloC1QGcezSoBSMqs2uD
+                  YjgulOmUQVEJharolFJXEjFCMIuPjkkQB+9hORoEmZ3vUSOjgUj7wGBMD4K1XA/AqXI6kpC7Rdgs
+                  yR5mt5bJUfF8WXG0naHtgHsKMzP+I3Qbm/DQ00QWYEV5hx2KqmSYxMLq3GN/9DxourO0cWnxQbNg
+                  e4QcTwdNYDGfIkVtg0uDjy3782s0QFtDVkH+jZEMFgf/tqV1sFJwCHxHSQF3kEqYhp1/alEIeZ0x
+                  fQGO+GLlQGCAtLPb4Xg4csQITKsRMHT53rC6YT2KgGFvWALXEudAJBOw6LjGkR9jlfmIX0shjsk1
+                  4sd0Y/MDyw2MbiduKoMZi/sCXHwQJxblyXCrDhdBm0CaXCMgmJeLcaeI8WaQbrHTJx20zHUTPlkJ
+                  GmeoGiOQguk4gDDlI4JB43iBIkKAc7N1yGBqIwHk19EiHAs0yuU4NiJ/vrUUPndGy12/AfWlalsv
+                  7h3jP7tdkYOxhizEXKVIwTAPsAjNDkY24tSZSCwr0L84pIwbFwhZUV3ASNVYfZxUiBR0LgfAik53
+                  tEDsPqhNLn64xXRsUlidSD2WSajMOKIIjBKPRcxQXY5LusYeV8gPHfte67LhpXOYp/z83pCxOI4V
+                  S6eOvq4+jCm6dPYpdwAOExjR4WsNTPrpE74MsFXm8D03DTrDENibs5Hyke46fKoanzG15lDXLcXn
+                  DoZHP+Be9K1x6KCMcujlIoch4yzrzj2pxhAii9FK6wEzPnIXYDfxmEFdwqnGDxsuzZgl8Bn5Gzu1
+                  RQjc61i5bYTINMWKnQUNHCHMR8yE5NLr83uuj1rG7Shv57IDIoA1hdzoHFUlJqo4JyvlemQQK/6Y
+                  nK2PAsBasec5rOoL5DNJ8yjHjmemOz8VRkU0VsCqJyZ+jdnZoqcTybQd7YxtuOvRD+Je5Yv3ODjk
+                  S0zGZCzAmNxNeT8WwYGNPMZlWcJ8rHQW2Ln6o1uxXy2kGANX0A1GPSjGItcSO6GsdMrCbpSP/oja
+                  kqCFHJ8CrC3N8gWuMZ+jtmreU29Kazt2LJ7EMr4Fao7tqvvajhwpwE3HtwOysHqlox37WMbaui6J
+                  RxBMRwM0fn8Bl7paHUlDjWkkp6u0wPwUYAOVNoLMRmLy4hMhkXXK6E/OFlhda9vwQjOjWI7vkVTT
+                  8eFEZiZLRLTJjnnhB5SkIce/iLbHpwU7MmCqfayHRezwksrGh+rFLf55e/P7J/zhz0U/88P1Hh+r
+                  p78d8aejjze/Pb78qt1+g5Kcjj9VIVfj6u0+/n9VwV/Mvv8HuUF42VkTAAA=
+
+        gatewayAPI:
+          enabled: true
+          secretsNamespace:
+            create: false
+            name: cilium
+            sync: true
+
+        operator:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: DoesNotExist
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values: 
+                    - 'amd64'
+
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: cilium-install
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-admin
+    subjects:
+    - kind: ServiceAccount
+      name: cilium-install
+      namespace: cilium
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: cilium-install
+      namespace: cilium
+    ---
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      name: cilium-install
+      namespace: cilium
+    spec:
+      backoffLimit: 10
+      template:
+        metadata:
+          labels:
+            app: cilium-install
+        spec:
+          restartPolicy: OnFailure
+          tolerations:
+            - operator: Exists
+            - effect: NoSchedule
+              operator: Exists
+            - effect: NoExecute
+              operator: Exists
+            - effect: PreferNoSchedule
+              operator: Exists
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: NoSchedule
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: NoExecute
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: PreferNoSchedule
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: node-role.kubernetes.io/control-plane
+                        operator: Exists
+          serviceAccount: cilium-install
+          serviceAccountName: cilium-install
+          hostNetwork: true
+          containers:
+          - name: cilium-install
+            image: quay.io/cilium/cilium-cli-ci:latest
+            env:
+            - name: KUBERNETES_SERVICE_HOST
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: KUBERNETES_SERVICE_PORT
+              value: "6443"
+            command:
+              - cilium
+              - install
+              - --values values.yaml
+              - --namespace cilium
+              - --version "1.16.3"
+            volumeMounts:
+            - name: cilium-values
+              mountPath: /app/values.yaml
+              subPath: values.yaml
+          volumes:
+          - configMap:
+              items:
+              - key: values.yaml
+                path: values.yaml
+              name: cilium-values
