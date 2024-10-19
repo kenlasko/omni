@@ -33,7 +33,8 @@ cluster:
     disabled: true
   allowSchedulingOnControlPlanes: true
   extraManifests:
-  - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+  - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml  # For certificate rotation required by metrics server
+  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/experimental-install.yaml               # For Cilium gateway
   inlineManifests:
   - name: local-path
     contents: |
