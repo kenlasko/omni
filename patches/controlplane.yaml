@@ -8,6 +8,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/velero
+      type: bind
+      source: /var/velero
+      options:
+      - bind
+      - rshared
+      - rw
     extraArgs:
       rotate-server-certificates: true
   install:
