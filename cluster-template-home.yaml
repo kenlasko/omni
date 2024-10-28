@@ -1,7 +1,7 @@
 kind: Cluster
 name: home
 talos:
-  version: v1.8.1
+  version: v1.8.2
 kubernetes:
   version: 1.31.2
 features:
