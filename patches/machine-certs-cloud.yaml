@@ -1,4 +1,4 @@
 machine:
   certSANs:
   - cloud-kube.ucdialplans.com
-  - 129.153.52.234              # The Oracle load balancer IP
+  - 192.18.153.11               # The Oracle load balancer IP

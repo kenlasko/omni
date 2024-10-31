@@ -2,4 +2,4 @@ cluster:
   apiServer:
     certSANs:
     - cloud-kube.ucdialplans.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required.
-    - 129.153.52.234              # The Oracle load balancer IP
+    - 192.18.153.11               # The Oracle load balancer IP
