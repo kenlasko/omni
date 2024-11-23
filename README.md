@@ -10,6 +10,9 @@ Once complete, you will have a Kubernetes cluster running the latest Kubernetes 
 I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
 1. Follow the [Omni on-prem install instructions](https://omni.siderolabs.com/how-to-guides/self_hosted).
 2. Configure [docker-compose.yaml](docker-compose.yaml) file
+  1. The most important app is obviously `omni`
+  2. `traefik` is used for HTTPS traffic management and generates certificates via LetsEncrypt
+  3. The `dumpcerts` app creates .pem files from the LetsEncrypt certificates that can be consumed by Omni. Uses a [custom image](https://github.com/kenlasko/docker). See the next section for more information.
 3. Make sure an A record pointing to `omni.ucdialplans.com` is added to whatever is being used to serve DNS
 
 ## Certificate Management
