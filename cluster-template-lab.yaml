@@ -3,7 +3,7 @@ name: lab
 talos:
   version: v1.8.3
 kubernetes:
-  version: 1.31.3
+  version: 1.31.4
 features:
   enableWorkloadProxy: true
 patches:
