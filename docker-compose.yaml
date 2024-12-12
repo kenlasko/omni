@@ -40,29 +40,35 @@ services:
       - --name=onprem-omni
       - --cert=/tls.crt
       - --key=/tls.key
-      - --siderolink-api-cert=/tls.crt
-      - --siderolink-api-key=/tls.key
+      - --machine-api-cert=/tls.crt
+      - --machine-api-key=/tls.key
       - --private-key-source=file:///omni.asc
       - --event-sink-port=8091
       - --bind-addr=0.0.0.0:4443
-      - --siderolink-api-bind-addr=0.0.0.0:8090
+      - --machine-api-bind-addr=0.0.0.0:8090
       - --k8s-proxy-bind-addr=0.0.0.0:8100
       - --advertised-api-url=https://omni.ucdialplans.com/
       - --siderolink-api-advertised-url=https://omni.ucdialplans.com:8090/
-      - --siderolink-wireguard-advertised-addr=192.168.1.17:50180
+      - --siderolink-wireguard-advertised-addr=omni.ucdialplans.com:50180
       - --advertised-kubernetes-proxy-url=https://omni.ucdialplans.com:8100/
       - --auth-auth0-enabled=true
       - --auth-auth0-domain=ucdialplans.us.auth0.com
       - --auth-auth0-client-id=***REMOVED***
+      - --workload-proxying-subdomain=omni
       - --initial-users=ken.lasko@gmail.com
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.omni.rule=HostRegexp(`omni.ucdialplans.com`)"
+      - "traefik.http.routers.omni.rule=HostRegexp(`omni.ucdialplans.com`) || HostRegexp(`.+.omni.ucdialplans.com`)"
+      - "traefik.http.routers.omni.tls.domains[0].main=ucdialplans.com"
+      - "traefik.http.routers.omni.tls.domains[0].main=*.ucdialplans.com"
+      - "traefik.http.routers.omni.tls.domains[1].main=omni.ucdialplans.com"
+      - "traefik.http.routers.omni.tls.domains[1].main=*.omni.ucdialplans.com"
       - "traefik.http.routers.omni.entrypoints=websecure"
       - "traefik.http.routers.omni.tls=true"
       - "traefik.http.routers.omni.tls.certresolver=letsencrypt"
       - "traefik.http.services.omni.loadbalancer.server.port=4443"
       - "traefik.http.services.omni.loadbalancer.server.scheme=https"
+
     volumes:
       - ./omni/etcd:/_out/etcd
       - ./certs/star_ucdialplans_com.pem:/tls.crt

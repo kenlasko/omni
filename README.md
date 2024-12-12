@@ -18,14 +18,13 @@ I installed Omni on a Raspberry Pi I'm using for other Docker-related stuff.
 ## Certificate Management
 Omni requires a public certificate for nodes to connect to. It is very important to keep this certificate up-to-date, or else things will start to go very bad when the certificate expires. When nodes reboot with an expired Omni certificate, Kubernetes pods will react in strange ways that will be hard to diagnose.
 
-My `docker-compose` file uses certificates issued by LetsEncrypt, but these certificates aren't available in file format that can be consumed by the Omni container. To get around this, I use a container called `dumpcerts` to regularly create/update `.pem` files from the Traefik certificate. Omni then consumes these certificates. The `dumpcerts` container is a home-built container defined in my [Docker repository](https://github.com/kenlasko/docker/)
+The `Traefik` section of my `docker-compose` file uses certificates issued by LetsEncrypt, but these certificates aren't available in file format that can be consumed by the Omni container. To get around this, I use a container called `dumpcerts` to regularly create/update `.pem` files from the LetsEncrypt certificate. Omni then consumes these certificates. The `dumpcerts` container is a home-built container defined in my [Docker repository](https://github.com/kenlasko/docker/)
 
 # PXEBoot Configuration
 Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [PXEBoot Configuration](https://github.com/kenlasko/pxeboot) instructions to configure
 
 # Omnictl/Talosctl installation
 1. Download omnictl and talosctl from https://omni.ucdialplans.com and put in proper locations on your workstation.
-
 For AMD machines:
 ```
 sudo mv omnictl-linux-amd64 /usr/local/bin/omnictl
