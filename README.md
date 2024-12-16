@@ -58,6 +58,7 @@ Assumes Kubectl is already installed.
   tar zxvf "${KREW}.tar.gz" &&
   ./"${KREW}" install krew
 )
+
 # Add Krew path to ~/.bashrc
 echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
