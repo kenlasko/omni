@@ -58,16 +58,11 @@ Assumes Kubectl is already installed.
   tar zxvf "${KREW}.tar.gz" &&
   ./"${KREW}" install krew
 )
-```
-
-2. Add Krew path to ~/.bashrc
-```
+# Add Krew path to ~/.bashrc
 echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
-```
 
-3. Install OIDC-Login in Kubectl
-```
+# Install OIDC-Login in Kubectl
 kubectl krew install oidc-login
 ```
 
