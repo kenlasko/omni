@@ -1,9 +1,9 @@
 kind: Cluster
 name: lab
 talos:
-  version: v1.8.4
+  version: v1.9.0
 kubernetes:
-  version: 1.31.4
+  version: 1.32.0
 features:
   enableWorkloadProxy: true
 patches:
