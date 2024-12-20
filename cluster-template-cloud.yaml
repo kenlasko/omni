@@ -23,7 +23,8 @@ patches:
     file: /home/ken/omni/patches/controlplane-cloud.yaml
   - name: machine-certs
     file: /home/ken/omni/patches/machine-certs-cloud.yaml
-
+  - name: machine-hostdns
+    file: /home/ken/omni/patches/machine-hostdns.yaml
 ---
 kind: Workers
 name: workers

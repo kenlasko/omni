@@ -25,6 +25,8 @@ patches:
     file: /home/ken/omni/patches/controlplane.yaml
   - name: machine-certs
     file: /home/ken/omni/patches/machine-certs-home.yaml
+  - name: machine-hostdns
+    file: /home/ken/omni/patches/machine-hostdns.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
 
@@ -40,6 +42,8 @@ patches:
     file: /home/ken/omni/patches/worker.yaml
   - name: certs
     file: /home/ken/omni/patches/machine-certs-home.yaml
+  - name: machine-hostdns
+    file: /home/ken/omni/patches/machine-hostdns.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
 systemExtensions:
