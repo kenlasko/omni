@@ -2,4 +2,4 @@ machine:
   features:
     hostDNS:
       enabled: true
-      forwardKubeDNSToHost: false
+      forwardKubeDNSToHost: true
