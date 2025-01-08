@@ -1,3 +1,6 @@
+# Due to an incompatibility between Cilium BPF host routing and Talos DNS forwarding, forwardKubeDNSToHost must be set to false.
+# Otherwise, CoreDNS will stop working.
+# The alternative is to force Cilium to use legacy routing via bpf.hostLegacyRouting=true, but this is not recommended.
 machine:
   features:
     hostDNS:
