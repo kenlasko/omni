@@ -25,7 +25,6 @@ cluster:
               - longhorn
               - monitoring
               - tailscale
-              - velero
             runtimeClasses: []
             usernames: []
           kind: PodSecurityConfiguration
