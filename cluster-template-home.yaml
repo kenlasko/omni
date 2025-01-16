@@ -3,7 +3,7 @@ name: home
 talos:
   version: v1.9.2
 kubernetes:
-  version: 1.32.0
+  version: 1.32.1
 features:
   enableWorkloadProxy: true
   backupConfiguration:
