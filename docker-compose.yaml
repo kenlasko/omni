@@ -1,22 +1,4 @@
 services:
-  adguard:
-    image: adguard/adguardhome
-    container_name: adguard
-    hostname: rpi1
-    restart: unless-stopped
-    network_mode: host
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.adguard.rule=Host(`adguard-rpi1.ucdialplans.com`)"
-      - "traefik.http.routers.adguard.entrypoints=websecure"
-      - "traefik.http.routers.adguard.tls=true"
-      - "traefik.http.routers.adguard.tls.certresolver=letsencrypt"
-      - "traefik.http.services.adguard.loadbalancer.server.port=3000"
-    volumes:
-      - ./adguard/conf:/opt/adguardhome/conf
-      - ./adguard/work:/opt/adguardhome/work
-
-
   # This container is used to convert the LetsEncrypt certs in acme.json to PEM files
   # that can be used by Omni (and any other program that requires access to PEM certs)
   dumpcerts:
@@ -27,9 +9,8 @@ services:
     volumes:
       - ./certs:/certs
 
-
   omni:
-    image: ghcr.io/siderolabs/omni:v0.37.5
+    image: ghcr.io/siderolabs/omni:v0.45.1
     container_name: omni
     restart: unless-stopped
     network_mode: host
@@ -68,7 +49,6 @@ services:
       - "traefik.http.routers.omni.tls.certresolver=letsencrypt"
       - "traefik.http.services.omni.loadbalancer.server.port=4443"
       - "traefik.http.services.omni.loadbalancer.server.scheme=https"
-
     volumes:
       - ./omni/etcd:/_out/etcd
       - ./certs/star_ucdialplans_com.pem:/tls.crt
@@ -76,21 +56,9 @@ services:
       - ./omni/omni.asc:/omni.asc
       - /dev/net/tun:/dev/net/tun
 
-
-  portainer-agent:
-    container_name: portainer-agent
-    image: portainer/agent
-    restart: always
-    ports:
-      - 9001:9001
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /var/lib/docker/volumes:/var/lib/docker/volumes
-
-
   traefik:
     container_name: traefik
-    image: traefik
+    image: docker.io/traefik:v3.3.2
     restart: always
     command:
       - --entrypoints.web.address=:80
@@ -137,24 +105,6 @@ services:
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
     extra_hosts:
       - host.docker.internal:172.19.0.1
-    networks:
-      - ipv6
-
-
-  watchtower:
-    container_name: watchtower
-    image: containrrr/watchtower:armhf-latest
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --schedule "0 0 */12 * * *" --cleanup
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: '30M'
-    labels:
-      - "org.label-schema.group=rpi1-container"
     networks:
       - ipv6
 
