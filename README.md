@@ -24,14 +24,16 @@ The `Traefik` section of my `docker-compose` file uses certificates issued by Le
 Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [PXEBoot Configuration](https://github.com/kenlasko/pxeboot) instructions to configure
 
 # Omnictl/Talosctl installation
-1. Download omnictl and talosctl from https://omni.ucdialplans.com and put in proper locations on your workstation.
+1. Download omnictl from https://omni.ucdialplans.com and put in proper locations on your workstation.
 ```
+# Remove old version of talosctl, if present
+sudo rm /usr/local/bin/talosctl
+curl -sL https://talos.dev/install | sh
+
 # Get the architecture
 ARCH_TYPE=$(dpkg --print-architecture)
-
 sudo mv omnictl-linux-${ARCH_TYPE} /usr/local/bin/omnictl
-sudo mv talosctl-linux-${ARCH_TYPE} /usr/local/bin/talosctl
-sudo chmod u+x /usr/local/bin/omnictl /usr/local/bin/talosctl
+sudo chmod u+x /usr/local/bin/omnictl
 ```
 
 2. Download omniconfig.yaml and talosconfig.yaml from omni.ucdialplans.com and put in proper locations on your workstation.
