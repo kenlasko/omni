@@ -26,11 +26,11 @@ Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nic
 # Omnictl/Talosctl installation
 1. Download omnictl from https://omni.ucdialplans.com and put in proper locations on your workstation.
 ```
-# Remove old version of talosctl, if present
+# Remove old version of talosctl, if present, then install latest version
 sudo rm /usr/local/bin/talosctl
 curl -sL https://talos.dev/install | sh
 
-# Get the architecture
+# Assumes the latest omnictl has already been downloaded and placed in current directory
 ARCH_TYPE=$(dpkg --print-architecture)
 sudo mv omnictl-linux-${ARCH_TYPE} /usr/local/bin/omnictl
 sudo chmod u+x /usr/local/bin/omnictl
