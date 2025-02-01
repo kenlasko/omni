@@ -94,7 +94,7 @@ Then install Cilium using whatever method you desire. In my case, I used an Ansi
 The repo that contains all that is currently private. I may expose it once I'm confident all secrets are gone.
 
 ## Using remote SSH shell for kubectl
-If you're using a remote SSH shell to connect to the cluster, add the following to your ```~/.ssh/config```
+If you're using a remote SSH shell to connect to the cluster, add the following to your ```~/.ssh/config``` on your local machine you're using to connect to `myhost`
 ```
 Host myhost
   LocalForward 8000 127.0.0.1:8000
