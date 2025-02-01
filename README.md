@@ -43,8 +43,10 @@ mkdir -p ~/.talos/
 cp ~/omni/omniconfig.yaml ~/.config/omni/config
 cp ~/omni/talosconfig.yaml ~/.talos/config
 ```
-# Omni/Kubectl installation
-Assumes Kubectl is already installed.
+
+# Omni/Kubectl Integration
+An OIDC plugin provided by Krew is required for connecting to the cluster via Omni. Assumes Kubectl is already installed.
+
 1. Install Krew 
 ```
 (
