@@ -20,3 +20,9 @@ machine:
   install:
     extraKernelArgs:
     - net.ifnames=0
+  network:
+    interfaces:
+    - interface: eth0
+      dhcp: true
+      vip:
+        ip: 192.168.1.11

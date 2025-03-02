@@ -1,3 +1,5 @@
+# This enables image caching for the listed remote registries. Saves bandwidth and speeds up deployments. 
+# Registries are hosted in Container Station on the QNAP NAS.
 machine:
   registries:
     mirrors:
