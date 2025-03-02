@@ -24,5 +24,7 @@ machine:
     interfaces:
     - interface: eth0
       dhcp: true
+      # This enables KubeVIP functionality, which makes the Kube API available on the defined VIP
+      # via https://<ipAddress>:6443
       vip:
         ip: 192.168.1.11
