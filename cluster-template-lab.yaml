@@ -11,8 +11,8 @@ patches:
     file: /home/ken/omni/patches/cluster.yaml
   - name: cluster-certs
     file: /home/ken/omni/patches/cluster-certs-lab.yaml
-  - name: cilium-install
-    file: /home/ken/omni/patches/cilium-install-lab.yaml
+  # - name: cilium-install
+  #   file: /home/ken/omni/patches/cilium-install-lab.yaml
     
 ---
 kind: ControlPlane
