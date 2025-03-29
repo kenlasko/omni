@@ -22,7 +22,7 @@ machines:
   # - 9c781809-bc2a-49c4-b0f4-020778207855  # Lab3
 patches:
   - name: controlplane-base
-    file: /home/ken/omni/patches/controlplane.yaml
+    file: /home/ken/omni/patches/controlplane-lab.yaml
   - name: machine-certs
     file: /home/ken/omni/patches/machine-certs-lab.yaml
   - name: registries

@@ -1,0 +1,30 @@
+machine:
+  kubelet:
+    extraMounts:
+    - destination: /var/mariadb
+      type: bind
+      source: /var/mariadb
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/postgres
+      type: bind
+      source: /var/postgres
+      options:
+      - bind
+      - rshared
+      - rw
+    extraArgs:
+      rotate-server-certificates: true
+  install:
+    extraKernelArgs:
+    - net.ifnames=0
+  network:
+    interfaces:
+    - interface: eth0
+      dhcp: true
+      # This enables KubeVIP functionality, which makes the Kube API available on the defined VIP
+      # via https://<ipAddress>:6443
+      vip:
+        ip: 192.168.1.211
