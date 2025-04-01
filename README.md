@@ -97,7 +97,7 @@ Then install Cilium using whatever method you desire. In my case, I used an Ansi
 The repo that contains all that is currently private. I may expose it once I'm confident all secrets are gone.
 
 ## Using remote SSH shell for kubectl
-If you're using a remote SSH shell to connect to the cluster, add the following to your ```~/.ssh/config``` on your local machine you're using to connect to `myhost`
+If you're using a remote SSH shell to connect to the cluster, add the following to your `~/.ssh/config` on your local machine you're using to connect to `myhost`
 ```
 Host myhost
   LocalForward 8000 127.0.0.1:8000
@@ -107,7 +107,7 @@ Or alternatively, connect directly via SSH using:
 ```
 ssh -i "~/.ssh/id_rsa" ken@rpi1. -L 8000:localhost:8000
 ```
-Add ```- --skip-open-browser``` to the Omni user account in the ```Users:``` section of your ```~/.kube/config``` for Omni as in the example below:
+Add `- --skip-open-browser` to the Omni user account in the `Users:` section of your `~/.kube/config` for Omni as in the example below:
 ```
 users:
 - name: onprem-omni-home-ken.lasko@gmail.com
@@ -128,7 +128,7 @@ users:
 ```
 
 # Omni Backup/Restore
-It is important to backup the Omni etcd database as well as the ```omni.asc``` key in case of disaster. Here is a simple script to back this up. Requires installation of ```etcdctl``` client.
+It is important to backup the Omni etcd database as well as the `omni.asc` key in case of disaster. Here is a simple script to back this up. Requires installation of `etcdctl` client.
 
 ## Installing etcdctl client on Ubuntu/Raspbian
 ```
@@ -151,8 +151,8 @@ echo "$(date +%F_%T) Omni etcd database has been backed up."
 ```
 
 ## Restoring Omni
-1. Copy ```omni.asc``` to the ```omni``` folder on your Docker host (or wherever the Omni Docker folder resides)
-2. Copy ```snapshot.db``` to the ```omni``` folder on your Docker host
+1. Copy `omni.asc` to the `omni` folder on your Docker host (or wherever the Omni Docker folder resides)
+2. Copy `snapshot.db` to the `omni` folder on your Docker host
 3. Run the following commands to restore the Omni database:
 ```
 cd /docker/omni
