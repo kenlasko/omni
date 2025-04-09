@@ -29,6 +29,8 @@ patches:
     file: /home/ken/omni/patches/machine-hostdns.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
+  - name: kubelet
+    file: /home/ken/omni/patches/machine-kubelet.yaml
 
 ---
 kind: Workers
@@ -46,6 +48,8 @@ patches:
     file: /home/ken/omni/patches/machine-hostdns.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
+  - name: kubelet
+    file: /home/ken/omni/patches/machine-kubelet.yaml
 systemExtensions:
   - siderolabs/iscsi-tools
   - siderolabs/util-linux-tools

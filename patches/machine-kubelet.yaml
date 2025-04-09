@@ -1,0 +1,5 @@
+machine:
+  kubelet:
+    extraConfig:
+      imageGCLowThresholdPercent: 40
+      imageGCHighThresholdPercent: 50 
