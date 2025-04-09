@@ -1,3 +1,6 @@
+# This patch file is used to set the kubelet image garbage collection thresholds to lower than the default values of 80 and 85 percent.
+# Helps greatly with freeing up disk space on the hosts.
+
 machine:
   kubelet:
     extraConfig:
