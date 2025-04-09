@@ -1,5 +1,6 @@
 # This patch file is used to set the kubelet image garbage collection thresholds to lower than the default values of 80 and 85 percent.
-# Helps greatly with freeing up disk space on the hosts.
+# Helps greatly with freeing up disk space on the hosts. NUC4 was running low enough to hit Longhorn's default thresholds for larger
+# images like Plex.
 
 machine:
   kubelet:
