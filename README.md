@@ -135,14 +135,16 @@ It is important to backup the Omni etcd database as well as the `omni.asc` key i
 sudo apt install etcd-client
 ```
 ## Sample Backup Script
-This script takes a snapshot of the etcd database as well as the entire contents of the Omni folder. Keeps daily, weekly and monthly backups. This example goes to a NAS folder mount. 
-Add to crontab to run it daily.
+This script takes a snapshot of the etcd database as well as the entire contents of the Omni folder. Keeps daily, weekly and monthly backups. This example goes to a NAS folder mounted at `/mnt/omni-backup`. 
+Add to crontab to run it daily by running `crontab -e` and inserting an appropriate daily schedule.
 ```
 #!/bin/sh
 
 ETCDCTL_API=3 etcdctl snapshot save /docker/omni/snapshot.db
 day=$(date +%A)
 dayofmonth=$(date +%-d)
+echo "$(date +%F_%T) Backing up omni.asc..."
+sudo cp -f /docker/omni/omni.asc /mnt/omni-backup/
 echo "$(date +%F_%T) Backing up Omni etcd database..."
 sudo zip -r /mnt/omni-backup/etcdbackup-$day.zip /docker/omni/
 if [ "$dayofmonth" -eq 1 ]; then echo "Creating monthly backup..."; cp /mnt/omni-backup/etcdbackup-$day.zip /mnt/omni-backup/etcdbackup-monthly-$(date +%m).zip; fi
