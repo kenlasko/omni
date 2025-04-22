@@ -1,4 +1,4 @@
-## Any ${VARIABLE} in this file will be replaced with the value from the .env file that should be in the same directory as `docker-compose.yaml`
+# Any ${VARIABLE} in this file will be replaced with the value from the .env file that should be in the same directory as `docker-compose.yaml`
 
 services:  
   omni:
