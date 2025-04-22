@@ -89,12 +89,10 @@ Once you're ready for creating your cluster, run the below command from your wor
 ```
 omnictl cluster template sync -f ~/omni/cluster-template-(home|cloud|lab).yaml
 ```
-Then install Cilium using whatever method you desire. In my case, I used an Ansible script to install the core apps that would allow me to log into ArgoCD and install everything else:
+Then install Cilium using whatever method you desire. In my case, I use [Terraform/OpenTofu](https://github.com/kenlasko/k8s-bootstrap) to install the core apps that would allow me to log into ArgoCD and install everything else:
 - Cilium
 - External Secrets
 - Cert Manager
-
-The repo that contains all that is currently private. I may expose it once I'm confident all secrets are gone.
 
 ## Using remote SSH shell for kubectl
 If you're using a remote SSH shell to connect to the cluster, add the following to your `~/.ssh/config` on your local machine you're using to connect to `myhost`
