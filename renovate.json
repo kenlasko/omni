@@ -17,6 +17,15 @@
       ],
       "datasourceTemplate": "github-releases",
       "packageNameTemplate": "siderolabs/talos"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^cluster\\-template\\-.*.yaml$"],
+      "matchStrings": [
+        "kubernetes:\\s*\\n(?:\\s{2,})?version:\\s*(?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "packageNameTemplate": "kubernetes/kubernetes"
     }
   ],
   "packageRules": [
