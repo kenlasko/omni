@@ -18,5 +18,14 @@
       "datasourceTemplate": "github-releases",
       "packageNameTemplate": "siderolabs/talos"
     }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker", "helm"],
+      "matchManagers": ["custom.regex"],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true
+    }
   ]
 }
