@@ -33,7 +33,10 @@
       "matchManagers": ["custom.regex"],
       "automerge": true,
       "automergeType": "branch",
-      "ignoreTests": true
+      "ignoreTests": true,
+      "matchUpdateTypes": [
+        "patch"
+      ]
     }
   ]
 }
