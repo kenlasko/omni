@@ -1,6 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":rebaseStalePrs"
+  ],
+  "enabledManagers": [
+    "docker-compose",
+    "custom.regex"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^cluster-template-.*.yaml$"],
+      "matchStrings": [
+        "talos:\\n\\s*version:\\s*(?<currentValue>.*?)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "packageNameTemplate": "siderolabs/talos"
+    }
   ]
 }
