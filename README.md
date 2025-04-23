@@ -13,7 +13,7 @@ My updated installation is based on the [example configuration](https://omni.sid
 
 In my homelab, Omni is installed on a Raspberry Pi I'm using for other Docker-related stuff.
 
-1. Follow the [Omni on-prem install instructions](https://omni.siderolabs.com/how-to-guides/self_hosted).
+1. Follow the [Omni on-prem install instructions](https://omni.siderolabs.com/how-to-guides/self_hosted). This will get the basics running, including setting up an OIDC provider for authentication. I use [Auth0](https://auth0.com/) as per the Omni documentation.
 2. Configure [docker-compose.yaml](docker-compose.yaml) file:
    * The most important app is obviously `omni`
    * `traefik` is used for HTTPS traffic management and generates certificates via LetsEncrypt
@@ -24,9 +24,12 @@ In my homelab, Omni is installed on a Raspberry Pi I'm using for other Docker-re
 Omni requires a public certificate for nodes to connect to. It is very important to keep this certificate up-to-date, or else things will start to go very bad when the certificate expires. When nodes reboot with an expired Omni certificate, Kubernetes pods will react in strange ways that will be hard to diagnose. Omni uses certificates automatically issued by LetsEncrypt via the `Traefik` section of my `docker-compose` file.
 
 # PXEBoot Configuration
-Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [PXEBoot Configuration](https://github.com/kenlasko/pxeboot) instructions to configure
+Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [PXEBoot Configuration](https://github.com/kenlasko/pxeboot) instructions to configure.
 
 # Omnictl/Talosctl installation
+The cluster is managed from the CLI using [omnictl](https://omni.siderolabs.com/how-to-guides/install-and-configure-omnictl) and [talosctl](https://www.talos.dev/v1.9/learn-more/talosctl/). While cluster operations can be performed from the Omni UI, I think its better to do so from the CLI for a declarative approach and get away from "click-ops".
+For my deployment, the installation/configuration of these tools is managed via [NixOS](https://github.com/kenlasko/nixos-wsl), but the manual steps are included here for those who haven't discovered NixOS yet.
+
 1. Download omnictl from https://omni.ucdialplans.com and put in proper locations on your workstation.
 ```
 # Remove old version of talosctl, if present, then install latest version
@@ -77,7 +80,7 @@ sudo apt install wslu -y
 ```
 
 # Omni cluster creation/update
-Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com. I did this via [PXEBoot](https://github.com/kenlasko/pxeboot).
+Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com. I did this via a [NetbootXYZ](https://github.com/kenlasko/docker-rpi1/netbootxyz) installation on the same Raspberry Pi node as my Omni installation.
 
 You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs. I have multiple cluster templates for home, cloud and lab to test various things. You may not need all this.
 
@@ -126,7 +129,7 @@ users:
 ```
 
 # Omni Backup/Restore
-It is important to backup the Omni etcd database as well as the `omni.asc` key in case of disaster. Here is a simple script to back this up. Requires installation of `etcdctl` client.
+It is important to backup the Omni etcd database as well as the `omni.asc` key in case of disaster. Below is a simple script to back this up. Requires installation of `etcdctl` client.
 
 ## Installing etcdctl client on Ubuntu/Raspbian
 ```
