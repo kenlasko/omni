@@ -5,7 +5,8 @@ In my situation, I have 6 NUCs/mini-PCs that I use for my cluster. Three are old
 
 Once complete, you will have a Kubernetes cluster running the latest Kubernetes flavour, but without a CNI. This means your cluster won't actually be running until a CNI is installed. I used Cilium for my cluster following [these steps](https://www.talos.dev/v1.8/kubernetes-guides/network/deploying-cilium/).
 
-## Related Repositories:
+## Related Repositories
+Links to my other repositories mentioned or used in this repo:
 - [NetbootXYZ](https://github.com/kenlasko/docker-rpi1/tree/main/netbootxyz): Simplified PXE boot setup for Omni-managed Talos nodes.
 - [K8s Bootstrap](https://github.com/kenlasko/k8s-bootstrap): Bootstraps Kubernetes clusters with essential apps using Terraform/OpenTofu
 - [K8s Cluster Configuration](https://github.com/kenlasko/k8s): Manages Kubernetes cluster manifests and workloads.
