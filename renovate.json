@@ -21,7 +21,6 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["docker", "helm"],
       "matchManagers": ["custom.regex"],
       "automerge": true,
       "automergeType": "branch",
