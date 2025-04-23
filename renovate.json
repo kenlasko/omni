@@ -13,7 +13,7 @@
       "customType": "regex",
       "fileMatch": ["^cluster\\-template\\-.*.yaml$"],
       "matchStrings": [
-        "talos:\\n\\s*version:\\s*(?<currentValue>.*?)"
+        "talos:\\s*\\n(?:\\s{2,})?version:\\s*(?<currentValue>\\S+)"
       ],
       "datasourceTemplate": "github-releases",
       "packageNameTemplate": "siderolabs/talos"
