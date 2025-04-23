@@ -11,7 +11,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^cluster\\-template\\-.*.yaml$"],
+      "fileMatch": ["cluster\\-template\\-.*.yaml$"],
       "matchStrings": [
         "talos:\\n\\s*version:\\s*(?<currentValue>.*?)"
       ],
