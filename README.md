@@ -31,7 +31,7 @@ In my homelab, Omni is installed on a Raspberry Pi I'm using for other Docker-re
 Omni requires a public certificate for nodes to connect to. It is very important to keep this certificate up-to-date, or else things will start to go very bad when the certificate expires. When nodes reboot with an expired Omni certificate, Kubernetes pods will react in strange ways that will be hard to diagnose. Omni uses certificates automatically issued by LetsEncrypt via the `Traefik` section of my `docker-compose` file.
 
 # PXEBoot Configuration
-Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [NetBootXYZ Configuration](https://github.com/kenlasko/docker-rpi1/netbootxyz) instructions to configure.
+Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nicer. Follow the [NetBootXYZ Configuration](https://github.com/kenlasko/docker-rpi1/tree/main/netbootxyz) instructions to configure.
 
 # Omnictl/Talosctl installation
 The cluster is managed from the CLI using [omnictl](https://omni.siderolabs.com/how-to-guides/install-and-configure-omnictl) and [talosctl](https://www.talos.dev/v1.9/learn-more/talosctl/). While cluster operations can be performed from the Omni UI, I think its better to do so from the CLI for a declarative approach and get away from "click-ops".
