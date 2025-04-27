@@ -3,7 +3,7 @@ name: laptop
 talos:
   version: v1.9.5
 kubernetes:
-  version: 1.32.4
+  version: 1.33.0
 features:
   enableWorkloadProxy: true
 patches:
