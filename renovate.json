@@ -31,7 +31,7 @@
   "packageRules": [
     {
       "matchManagers": ["custom.regex"],
-      "automerge": false,
+      "automerge": true,
       "automergeType": "branch",
       "ignoreTests": true,
       "matchUpdateTypes": [
