@@ -21,7 +21,7 @@ cluster:
             namespaces:
               - cert-manager
               - cilium
-              - cilium-test
+              - cilium-test-1
               - homeassist
               - intel-gpu
               - longhorn
