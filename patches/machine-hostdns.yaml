@@ -8,5 +8,5 @@
 machine:
   features:
     hostDNS:
-      enabled: false  # Trying to use Cilium hostLegacyRouting=True (which means this has to be false) to troubleshoot my intermittent access issues (see https://github.com/kenlasko/k8s/issues/15)
+      enabled: true  # Trying to use Cilium hostLegacyRouting=True (which means this has to be false) to troubleshoot my intermittent access issues (see https://github.com/kenlasko/k8s/issues/15)
       forwardKubeDNSToHost: false
