@@ -22,9 +22,9 @@ machine:
       - bind
       - rshared
       - rw
-    - destination: /var/postgres
+    - destination: /var/postgresql
       type: bind
-      source: /var/postgres
+      source: /var/postgresql
       options:
       - bind
       - rshared
