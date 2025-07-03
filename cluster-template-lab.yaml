@@ -1,7 +1,7 @@
 kind: Cluster
 name: lab
 talos:
-  version: v1.10.4
+  version: v1.10.5
 kubernetes:
   version: 1.33.2
 features:
