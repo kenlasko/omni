@@ -27,6 +27,9 @@ patches:
     file: /home/ken/omni/patches/machine-hostdns.yaml
   - name: machine-hostdns
     file: /home/ken/omni/patches/machine-hostentries.yaml
+  - name: feature-gates
+    file: /home/ken/omni/patches/feature-gates.yaml
+    
 ---
 kind: Workers
 name: workers

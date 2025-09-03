@@ -1,0 +1,14 @@
+cluster:
+  apiServer:
+    extraArgs:
+      feature-gates: PodLevelResources=false
+  controllerManager:
+    extraArgs:
+      feature-gates: PodLevelResources=false
+  scheduler:
+    extraArgs:
+      feature-gates: PodLevelResources=false
+machine:
+  kubelet:
+    extraArgs:
+      feature-gates: PodLevelResources=false
