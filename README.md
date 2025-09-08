@@ -3,7 +3,7 @@ This repository is used to install a [Talos](https://github.com/siderolabs/talos
 
 In my situation, I have 6 NUCs/mini-PCs that I use for my cluster. Three are old Intel NUCs that are used as control planes. The other 3 are Beelink mini-PCs. My desire was to setup an easily reproducible Talos Kubernetes cluster and maintain my creative node name strategy of NUC1 through NUC6. 
 
-Once complete, you will have a Kubernetes cluster running the latest Kubernetes flavour, but without a CNI. This means your cluster won't actually be running until a CNI is installed. I used Cilium for my cluster following [these steps](https://www.talos.dev/v1.8/kubernetes-guides/network/deploying-cilium/).
+Once complete, you will have a Kubernetes cluster running the latest Kubernetes flavour, but without a CNI. This means your cluster won't actually be running until a CNI is installed. I used Cilium for my cluster following [these steps](https://www.talos.dev/v1.11/kubernetes-guides/network/deploying-cilium/).
 
 ## Related Repositories
 Links to my other repositories mentioned or used in this repo:
