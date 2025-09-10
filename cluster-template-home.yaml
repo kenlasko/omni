@@ -43,7 +43,7 @@ machines:
   - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
 patches:
   - name: worker-base
-    file: /home/ken/omni/patches/worker.yaml
+    file: /home/ken/omni/patches/worker-longhorn.yaml
   - name: certs
     file: /home/ken/omni/patches/machine-certs-home.yaml
   - name: machine-hostdns

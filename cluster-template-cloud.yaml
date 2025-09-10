@@ -25,8 +25,10 @@ patches:
     file: /home/ken/omni/patches/machine-certs-cloud.yaml
   - name: machine-hostdns
     file: /home/ken/omni/patches/machine-hostdns.yaml
-  - name: machine-hostdns
+  - name: machine-hostentries
     file: /home/ken/omni/patches/machine-hostentries.yaml
+  - name: kubelet
+    file: /home/ken/omni/patches/machine-kubelet.yaml
   - name: feature-gates
     file: /home/ken/omni/patches/feature-gates.yaml
     

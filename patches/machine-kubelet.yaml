@@ -6,4 +6,6 @@ machine:
   kubelet:
     extraConfig:
       imageGCLowThresholdPercent: 40
-      imageGCHighThresholdPercent: 50 
+      imageGCHighThresholdPercent: 50
+    extraArgs:
+      rotate-server-certificates: true

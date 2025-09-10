@@ -23,6 +23,8 @@ patches:
     file: /home/ken/omni/patches/machine-certs-laptop.yaml
   - name: registries
     file: /home/ken/omni/patches/machine-registries.yaml
+  - name: kubelet
+    file: /home/ken/omni/patches/machine-kubelet.yaml
 systemExtensions:
   - siderolabs/iscsi-tools
   - siderolabs/util-linux-tools
