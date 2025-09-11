@@ -36,13 +36,12 @@ patches:
 
 ---
 kind: Workers
-name: workers
 machines:
   - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
   - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
   - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
 patches:
-  - name: worker-base
+  - name: worker-longhorn
     file: /home/ken/omni/patches/worker-longhorn.yaml
   - name: certs
     file: /home/ken/omni/patches/machine-certs-home.yaml
@@ -56,6 +55,20 @@ systemExtensions:
   - siderolabs/iscsi-tools
   - siderolabs/util-linux-tools
   - siderolabs/i915
+
+# ---
+# kind: Workers
+# machines:
+#   - b6678873-5604-4303-9926-3f31abe514f4  # NAS01
+# patches:
+#   - name: certs
+#     file: /home/ken/omni/patches/machine-certs-home.yaml
+#   - name: machine-hostdns
+#     file: /home/ken/omni/patches/machine-hostdns.yaml
+#   - name: registries
+#     file: /home/ken/omni/patches/machine-registries.yaml
+#   - name: kubelet
+#     file: /home/ken/omni/patches/machine-kubelet.yaml
 
 ---
 kind: Machine
@@ -116,3 +129,13 @@ patches:
       machine:
         network:
           hostname: "nuc6"
+
+# ---
+# kind: Machine
+# name: b6678873-5604-4303-9926-3f31abe514f4
+# patches:
+#   - name: set-nodename
+#     inline:
+#       machine:
+#         network:
+#           hostname: "nas01"
