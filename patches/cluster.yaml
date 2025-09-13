@@ -1,5 +1,5 @@
 cluster:
-  allowSchedulingOnControlPlanes: false
+  allowSchedulingOnControlPlanes: true
   network:
     cni:
       name: none
