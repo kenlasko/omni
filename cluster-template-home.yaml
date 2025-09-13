@@ -19,7 +19,7 @@ kind: ControlPlane
 machines:
   - 4e211131-23e7-f477-9437-94c691a76e7c  # NUC1
   - 11b61e33-615e-b264-459a-94c691a81113  # NUC2
-  - 375c6280-f387-11ee-8fd7-a05890310d00  # NUC3
+  - 0dd63c00-7279-11e3-b5e7-b8aeed773448  # NUC3
 patches:
   - name: controlplane-base
     file: /home/ken/omni/patches/controlplane.yaml
@@ -40,6 +40,7 @@ machines:
   - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
   - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
   - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
+  - 375c6280-f387-11ee-8fd7-a05890310d00  # NUC7
 patches:
   - name: worker-longhorn
     file: /home/ken/omni/patches/worker-longhorn.yaml
@@ -92,13 +93,13 @@ patches:
 
 ---
 kind: Machine
-name: 375c6280-f387-11ee-8fd7-a05890310d00
+name: 0dd63c00-7279-11e3-b5e7-b8aeed773448
 patches:
   - name: set-nodename
     inline:
       machine:
         network:
-          hostname: "nuc3"
+          hostname: "nuc3" 
 
 ---
 kind: Machine
@@ -129,6 +130,16 @@ patches:
       machine:
         network:
           hostname: "nuc6"
+
+---
+kind: Machine
+name: 375c6280-f387-11ee-8fd7-a05890310d00
+patches:
+  - name: set-nodename
+    inline:
+      machine:
+        network:
+          hostname: "nuc7"
 
 # ---
 # kind: Machine
