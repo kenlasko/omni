@@ -26,6 +26,15 @@
       ],
       "datasourceTemplate": "github-releases",
       "packageNameTemplate": "kubernetes/kubernetes"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^cluster\\-.*.yaml$"],
+      "matchStrings": [
+        "gateway-api\/release\/download\/(?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "packageNameTemplate": "kubernetes-sigs/gateway-api"
     }
   ],
   "packageRules": [
