@@ -29,7 +29,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^patches\/cluster\\-.*.yaml$"],
+      "fileMatch": ["^patches/cluster\\-.*.yaml$"],
       "matchStrings": [
         "gateway-api\/release\/download\/(?<currentValue>)\/experimental-install.yaml"
       ],
