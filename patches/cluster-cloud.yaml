@@ -2,3 +2,7 @@ cluster:
   allowSchedulingOnControlPlanes: true
   extraManifests:
   - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+  apiServer:
+    certSANs:
+    - cloud-kube.ucdialplans.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required.
+    - 192.18.153.11               # The Oracle load balancer IP

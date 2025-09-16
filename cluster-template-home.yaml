@@ -13,8 +13,6 @@ patches:
     file: /home/ken/omni/patches/cluster.yaml
   - name: cluster-home
     file: /home/ken/omni/patches/cluster-home.yaml
-  - name: cluster-certs
-    file: /home/ken/omni/patches/cluster-certs-home.yaml
 
 ---
 kind: ControlPlane
