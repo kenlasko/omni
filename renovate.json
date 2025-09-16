@@ -31,7 +31,7 @@
       "customType": "regex",
       "fileMatch": ["^patches/cluster\\-.*.yaml$"],
       "matchStrings": [
-        "gateway-api\/release\/download\/(?<currentValue>)\/experimental-install.yaml"
+        "gateway-api\/releases\/download\/(?<currentValue>)\/experimental-install.yaml"
       ],
       "datasourceTemplate": "github-releases",
       "packageNameTemplate": "kubernetes-sigs/gateway-api"
