@@ -34,23 +34,9 @@ machine:
       - bind
       - rshared
       - rw
-    - destination: /var/keel
-      type: bind
-      source: /var/keel
-      options:
-      - bind
-      - rshared
-      - rw
     - destination: /var/mariadb
       type: bind
       source: /var/mariadb
-      options:
-      - bind
-      - rshared
-      - rw
-    - destination: /var/pgadmin
-      type: bind
-      source: /var/pgadmin
       options:
       - bind
       - rshared
@@ -69,16 +55,16 @@ machine:
       - bind
       - rshared
       - rw
-    - destination: /var/registry
+    - destination: /var/redis
       type: bind
-      source: /var/registry
+      source: /var/redis
       options:
       - bind
       - rshared
       - rw
-    - destination: /var/redis
+    - destination: /var/backup-temp
       type: bind
-      source: /var/redis
+      source: /var/backup-temp
       options:
       - bind
       - rshared
