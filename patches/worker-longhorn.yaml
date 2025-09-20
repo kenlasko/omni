@@ -29,6 +29,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/testweb
+      type: bind
+      source: /var/testweb
+      options:
+      - bind
+      - rshared
+      - rw
   install:
     extraKernelArgs:
     - net.ifnames=0
