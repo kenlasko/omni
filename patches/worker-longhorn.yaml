@@ -36,6 +36,13 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/backup-temp
+      type: bind
+      source: /var/backup-temp
+      options:
+      - bind
+      - rshared
+      - rw
   install:
     extraKernelArgs:
     - net.ifnames=0
