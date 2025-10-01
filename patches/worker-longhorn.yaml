@@ -8,20 +8,6 @@ machine:
       - bind
       - rshared
       - rw
-    - destination: /var/mariadb
-      type: bind
-      source: /var/mariadb
-      options:
-      - bind
-      - rshared
-      - rw
-    - destination: /var/mariadb-galera
-      type: bind
-      source: /var/mariadb-galera
-      options:
-      - bind
-      - rshared
-      - rw
     - destination: /var/postgresql
       type: bind
       source: /var/postgresql

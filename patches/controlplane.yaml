@@ -1,13 +1,6 @@
 machine:
   kubelet:
     extraMounts:
-    - destination: /var/mariadb
-      type: bind
-      source: /var/mariadb
-      options:
-      - bind
-      - rshared
-      - rw
     - destination: /var/postgresql
       type: bind
       source: /var/postgresql
