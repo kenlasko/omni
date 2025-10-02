@@ -17,14 +17,15 @@ My initial installation closely followed the [Omni on-prem install instructions]
 
 My updated installation is based on the [example configuration](https://omni.siderolabs.com/how-to-guides/self_hosted/index-1) provided by SideroLabs but differs in that I'm using Traefik and I'm also not proxying everything through port 443, which requires unique URLs for the different services. The reason is that I wanted to ensure my existing Omni-managed clusters would not be affected (which they might be if I followed the example config closely). This has the added benefit in that I don't require a gRPC tunnel, which is discouraged unless absolutely necessary.
 
-In my homelab, Omni is installed on a Raspberry Pi I'm using for other Docker-related stuff.
+In my homelab, Omni is installed on a [Raspberry Pi](https://github.com/kenlasko/docker-rpi1) I'm using for other Docker-related stuff.
 
 1. Follow the [Omni on-prem install instructions](https://omni.siderolabs.com/how-to-guides/self_hosted). This will get the basics running, including setting up an OIDC provider for authentication. I use [Auth0](https://auth0.com/) as per the Omni documentation.
 2. Configure [docker-compose.yaml](docker-compose.yaml) file:
    * The most important app is obviously `omni`
    * `traefik` is used for HTTPS traffic management and generates certificates via LetsEncrypt
-3. Make sure an A record pointing to `omni.ucdialplans.com` is added to whatever is being used to serve DNS
-4. If you plan on using [workload proxying](https://omni.siderolabs.com/how-to-guides/expose-an-http-service-from-a-cluster), also add a DNS record for `*.omni.ucdialplans.com` to DNS.
+3. Make sure an A record for `omni.ucdialplans.com` pointing to the IP of the host Omni is running on is added to your DNS server config.
+4. If you plan on using [workload proxying](https://omni.siderolabs.com/how-to-guides/expose-an-http-service-from-a-cluster), also add a DNS record for `*.omni.ucdialplans.com` to DNS, also pointing to the IP of the host Omni is running on.
+
 
 ## Certificate Management
 Omni requires a public certificate for nodes to connect to. It is very important to keep this certificate up-to-date, or else things will start to go very bad when the certificate expires. When nodes reboot with an expired Omni certificate, Kubernetes pods will react in strange ways that will be hard to diagnose. Omni uses certificates automatically issued by LetsEncrypt via the `Traefik` section of my `docker-compose` file.
