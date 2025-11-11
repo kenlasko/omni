@@ -9,28 +9,28 @@ features:
   # backupConfiguration:
   #   interval: 12h
 patches:
-  - name: cluster-base
-    file: /home/ken/omni/patches/cluster.yaml
-  - name: cluster-cloud
-    file: /home/ken/omni/patches/cluster-cloud.yaml
+- name: cluster-base
+  file: /home/ken/omni/patches/cluster.yaml
+- name: cluster-cloud
+  file: /home/ken/omni/patches/cluster-cloud.yaml
 
 ---
 kind: ControlPlane
 machines:
-  - a8e826e3-4522-4c5c-a5c1-6080e9deec9e  # talos-omni
+- a8e826e3-4522-4c5c-a5c1-6080e9deec9e  # talos-omni
 patches:
-  - name: controlplane-base
-    file: /home/ken/omni/patches/controlplane-cloud.yaml
-  - name: machine-certs
-    file: /home/ken/omni/patches/machine-certs-cloud.yaml
-  - name: machine-hostdns
-    file: /home/ken/omni/patches/machine-hostdns.yaml
-  - name: machine-hostentries
-    file: /home/ken/omni/patches/machine-hostentries.yaml
-  - name: kubelet
-    file: /home/ken/omni/patches/machine-kubelet.yaml
-  - name: feature-gates
-    file: /home/ken/omni/patches/feature-gates.yaml
+- name: controlplane-base
+  file: /home/ken/omni/patches/controlplane-cloud.yaml
+- name: machine-certs
+  file: /home/ken/omni/patches/machine-certs-cloud.yaml
+- name: machine-hostdns
+  file: /home/ken/omni/patches/machine-hostdns.yaml
+- name: machine-network
+  file: /home/ken/omni/patches/machine-network.yaml
+- name: kubelet
+  file: /home/ken/omni/patches/machine-kubelet.yaml
+- name: feature-gates
+  file: /home/ken/omni/patches/feature-gates.yaml
     
 ---
 kind: Workers

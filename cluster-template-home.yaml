@@ -9,49 +9,49 @@ features:
   backupConfiguration:
     interval: 12h
 patches:
-  - name: cluster-base
-    file: /home/ken/omni/patches/cluster.yaml
-  - name: cluster-home
-    file: /home/ken/omni/patches/cluster-home.yaml
+- name: cluster-base
+  file: /home/ken/omni/patches/cluster.yaml
+- name: cluster-home
+  file: /home/ken/omni/patches/cluster-home.yaml
 
 ---
 kind: ControlPlane
 machines:
-  - 4e211131-23e7-f477-9437-94c691a76e7c  # NUC1
-  - 11b61e33-615e-b264-459a-94c691a81113  # NUC2
-  - 0dd63c00-7279-11e3-b5e7-b8aeed773448  # NUC3
+- 4e211131-23e7-f477-9437-94c691a76e7c  # NUC1
+- 11b61e33-615e-b264-459a-94c691a81113  # NUC2
+- 0dd63c00-7279-11e3-b5e7-b8aeed773448  # NUC3
 patches:
-  - name: controlplane-base
-    file: /home/ken/omni/patches/controlplane.yaml
-  - name: machine-certs
-    file: /home/ken/omni/patches/machine-certs-home.yaml
-  - name: machine-hostdns
-    file: /home/ken/omni/patches/machine-hostdns.yaml
-  - name: registries
-    file: /home/ken/omni/patches/machine-registries.yaml
-  - name: kubelet
-    file: /home/ken/omni/patches/machine-kubelet.yaml
-  - name: feature-gates
-    file: /home/ken/omni/patches/feature-gates.yaml
+- name: controlplane-base
+  file: /home/ken/omni/patches/controlplane.yaml
+- name: machine-certs
+  file: /home/ken/omni/patches/machine-certs-home.yaml
+- name: machine-hostdns
+  file: /home/ken/omni/patches/machine-hostdns.yaml
+- name: registries
+  file: /home/ken/omni/patches/machine-registries.yaml
+- name: kubelet
+  file: /home/ken/omni/patches/machine-kubelet.yaml
+- name: feature-gates
+  file: /home/ken/omni/patches/feature-gates.yaml
 
 ---
 kind: Workers
 machines:
-  - 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
-  - a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
-  - 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
-  - 375c6280-f387-11ee-8fd7-a05890310d00  # NUC7
+- 97a2d280-f38e-11ee-980a-d4742c7d1a00  # NUC4
+- a0011900-f433-11ee-b7fb-0d3ea5620600  # NUC5
+- 464e1e00-f436-11ee-8bb0-bd5bcd350500  # NUC6
+- 375c6280-f387-11ee-8fd7-a05890310d00  # NUC7
 patches:
-  - name: worker-longhorn
-    file: /home/ken/omni/patches/worker-longhorn.yaml
-  - name: certs
-    file: /home/ken/omni/patches/machine-certs-home.yaml
-  - name: machine-hostdns
-    file: /home/ken/omni/patches/machine-hostdns.yaml
-  - name: registries
-    file: /home/ken/omni/patches/machine-registries.yaml
-  - name: kubelet
-    file: /home/ken/omni/patches/machine-kubelet.yaml
+- name: worker-longhorn
+  file: /home/ken/omni/patches/worker-longhorn.yaml
+- name: certs
+  file: /home/ken/omni/patches/machine-certs-home.yaml
+- name: machine-network
+  file: /home/ken/omni/patches/machine-network.yaml
+- name: registries
+  file: /home/ken/omni/patches/machine-registries.yaml
+- name: kubelet
+  file: /home/ken/omni/patches/machine-kubelet.yaml
 systemExtensions:
   - siderolabs/iscsi-tools
   - siderolabs/util-linux-tools
@@ -75,71 +75,71 @@ systemExtensions:
 kind: Machine
 name: 4e211131-23e7-f477-9437-94c691a76e7c
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc1"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc1"
 
 ---
 kind: Machine
 name: 11b61e33-615e-b264-459a-94c691a81113
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc2"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc2"
 
 ---
 kind: Machine
 name: 0dd63c00-7279-11e3-b5e7-b8aeed773448
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc3" 
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc3" 
 
 ---
 kind: Machine
 name: 97a2d280-f38e-11ee-980a-d4742c7d1a00
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc4"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc4"
 
 ---
 kind: Machine
 name: a0011900-f433-11ee-b7fb-0d3ea5620600
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc5"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc5"
 
 ---
 kind: Machine
 name: 464e1e00-f436-11ee-8bb0-bd5bcd350500
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc6"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc6"
 
 ---
 kind: Machine
 name: 375c6280-f387-11ee-8fd7-a05890310d00
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "nuc7"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "nuc7"
 
 # ---
 # kind: Machine

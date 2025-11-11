@@ -7,31 +7,31 @@ kubernetes:
 features:
   enableWorkloadProxy: true
 patches:
-  - name: cluster-base
-    file: /home/ken/omni/patches/cluster.yaml
-  - name: cluster-lab
-    file: /home/ken/omni/patches/cluster-lab.yaml
-  # - name: cilium-install
-  #   file: /home/ken/omni/patches/cilium-install-lab.yaml
+- name: cluster-base
+  file: /home/ken/omni/patches/cluster.yaml
+- name: cluster-lab
+  file: /home/ken/omni/patches/cluster-lab.yaml
+# - name: cilium-install
+#   file: /home/ken/omni/patches/cilium-install-lab.yaml
     
 ---
 kind: ControlPlane
 machines:
-  - 25dd5ec5-1026-454c-a94d-829ad525880f  # Lab1
-  # - a00e69ba-5e1d-470f-a217-4e9fc492cfe8  # Lab2
-  # - 9c781809-bc2a-49c4-b0f4-020778207855  # Lab3
+- 25dd5ec5-1026-454c-a94d-829ad525880f  # Lab1
+# - a00e69ba-5e1d-470f-a217-4e9fc492cfe8  # Lab2
+# - 9c781809-bc2a-49c4-b0f4-020778207855  # Lab3
 patches:
-  - name: controlplane-base
-    file: /home/ken/omni/patches/controlplane-lab.yaml
-  - name: machine-certs
-    file: /home/ken/omni/patches/machine-certs-lab.yaml
-  - name: registries
-    file: /home/ken/omni/patches/machine-registries.yaml
-  - name: machine-hostdns
-    file: /home/ken/omni/patches/machine-hostdns.yaml
+- name: controlplane-base
+  file: /home/ken/omni/patches/controlplane-lab.yaml
+- name: machine-certs
+  file: /home/ken/omni/patches/machine-certs-lab.yaml
+- name: registries
+  file: /home/ken/omni/patches/machine-registries.yaml
+- name: machine-hostdns
+  file: /home/ken/omni/patches/machine-hostdns.yaml
 systemExtensions:
-  - siderolabs/iscsi-tools
-  - siderolabs/util-linux-tools
+- siderolabs/iscsi-tools
+- siderolabs/util-linux-tools
   
 ---
 kind: Workers
@@ -43,11 +43,11 @@ patches: []
 kind: Machine
 name: 25dd5ec5-1026-454c-a94d-829ad525880f
 patches:
-  - name: set-nodename
-    inline:
-      machine:
-        network:
-          hostname: "lab1"
+- name: set-nodename
+  inline:
+    machine:
+      network:
+        hostname: "lab1"
 
 # ---
 # kind: Machine

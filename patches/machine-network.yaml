@@ -1,0 +1,11 @@
+machine:
+  network:
+    # This is to resolve an issue with Cilium DNS routing as per https://github.com/siderolabs/talos/pull/9200
+    interfaces:
+    - interface: lo
+      addresses:
+      - 169.254.169.254/32
+    extraHostEntries:
+    - ip: 10.0.0.103
+      aliases:
+      - pangolin.ucdialplans.com
