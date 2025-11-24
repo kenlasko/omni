@@ -27,8 +27,8 @@ patches:
   file: /home/ken/omni/patches/machine-certs-home.yaml
 - name: machine-hostdns
   file: /home/ken/omni/patches/machine-hostdns.yaml
-- name: registries
-  file: /home/ken/omni/patches/machine-registries.yaml
+# - name: registries
+#   file: /home/ken/omni/patches/machine-registries.yaml
 - name: kubelet
   file: /home/ken/omni/patches/machine-kubelet.yaml
 - name: feature-gates
@@ -48,8 +48,8 @@ patches:
   file: /home/ken/omni/patches/machine-certs-home.yaml
 - name: machine-network
   file: /home/ken/omni/patches/machine-network.yaml
-- name: registries
-  file: /home/ken/omni/patches/machine-registries.yaml
+# - name: registries
+#   file: /home/ken/omni/patches/machine-registries.yaml
 - name: kubelet
   file: /home/ken/omni/patches/machine-kubelet.yaml
 systemExtensions:
