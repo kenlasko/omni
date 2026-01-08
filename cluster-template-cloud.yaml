@@ -29,8 +29,8 @@ patches:
   file: /home/ken/omni/patches/machine-network.yaml
 - name: kubelet
   file: /home/ken/omni/patches/machine-kubelet.yaml
-- name: feature-gates
-  file: /home/ken/omni/patches/feature-gates.yaml
+# - name: feature-gates
+#   file: /home/ken/omni/patches/feature-gates.yaml
     
 ---
 kind: Workers
