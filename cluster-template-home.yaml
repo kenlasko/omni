@@ -33,6 +33,8 @@ patches:
   file: /home/ken/omni/patches/machine-kubelet.yaml
 # - name: feature-gates
 #   file: /home/ken/omni/patches/feature-gates.yaml
+systemExtensions:
+  - siderolabs/intel-ucode
 
 ---
 kind: Workers
@@ -56,7 +58,7 @@ systemExtensions:
   - siderolabs/iscsi-tools
   - siderolabs/util-linux-tools
   - siderolabs/i915
-
+  - siderolabs/intel-ucode
 ---
 kind: Machine
 name: 4e211131-23e7-f477-9437-94c691a76e7c
