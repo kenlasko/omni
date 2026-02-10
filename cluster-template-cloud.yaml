@@ -3,7 +3,7 @@ name: cloud
 talos:
   version: v1.12.3
 kubernetes:
-  version: 1.35.0
+  version: 1.35.1
 features:
   enableWorkloadProxy: true
   # backupConfiguration:
