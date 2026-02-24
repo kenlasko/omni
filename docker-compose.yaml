@@ -69,7 +69,7 @@ services:
 
   traefik:
     container_name: traefik
-    image: traefik:v3.6.8
+    image: traefik:v3.6.9
     restart: always
     command:
       - --providers.docker=true
