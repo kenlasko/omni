@@ -2,7 +2,7 @@
 
 services:  
   omni:
-    image: ghcr.io/siderolabs/omni:v1.6.3
+    image: ghcr.io/siderolabs/omni:v1.6.4
     container_name: omni
     restart: always
     cap_add:
