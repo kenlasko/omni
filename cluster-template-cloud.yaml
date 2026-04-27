@@ -24,7 +24,9 @@ patches:
 - name: machine-certs
   file: /home/ken/omni/patches/machine-certs-cloud.yaml
 - name: machine-hostdns
-  file: /home/ken/omni/patches/machine-hostdns.yaml
+  file: /home/ken/omni/patches/machine-hostdns.yaml 
+- name: machine-hostusers
+  file: /home/ken/omni/patches/machine-hostusers.yaml
 - name: machine-network
   file: /home/ken/omni/patches/machine-network.yaml
 - name: kubelet
