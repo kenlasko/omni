@@ -5,3 +5,4 @@ cluster:
   apiServer:
     certSANs:
     - kube-laptop.ucdialplans.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required. 
+    - kube-laptop.laskonet.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required.

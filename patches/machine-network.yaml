@@ -9,3 +9,4 @@ machine:
     - ip: 10.0.0.103
       aliases:
       - pangolin.ucdialplans.com
+      - pangolin.laskonet.com

@@ -1,3 +1,4 @@
 machine:
   certSANs:
-  - kube-laptop.ucdialplans.com 
+  - kube-laptop.ucdialplans.com
+  - kube-laptop.laskonet.com
