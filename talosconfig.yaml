@@ -2,7 +2,7 @@ context: onprem-omni
 contexts:
     onprem-omni:
         endpoints:
-            - https://omni.ucdialplans.com/
+            - https://omni.laskonet.com/
         auth:
             siderov1:
                 identity: ken.lasko@gmail.com

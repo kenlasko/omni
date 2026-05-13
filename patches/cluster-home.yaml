@@ -5,5 +5,4 @@ cluster:
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml               # For Cilium gateway
   apiServer:
     certSANs:
-    - kube.ucdialplans.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required.
     - kube.laskonet.com  # This is for a Kube API backdoor that doesn't require Omni to access. Not strictly required.

@@ -23,8 +23,8 @@ In my homelab, Omni is installed on a [Raspberry Pi](https://github.com/kenlasko
 2. Configure [docker-compose.yaml](docker-compose.yaml) file:
    * The most important app is obviously `omni`
    * `traefik` is used for HTTPS traffic management and generates certificates via LetsEncrypt
-3. Make sure an A record for `omni.ucdialplans.com` pointing to the IP of the host Omni is running on is added to your DNS server config.
-4. If you plan on using [workload proxying](https://omni.siderolabs.com/how-to-guides/expose-an-http-service-from-a-cluster), also add a DNS record for `*.omni.ucdialplans.com` to DNS, also pointing to the IP of the host Omni is running on.
+3. Make sure an A record for `omni.laskonet.com` pointing to the IP of the host Omni is running on is added to your DNS server config.
+4. If you plan on using [workload proxying](https://omni.siderolabs.com/how-to-guides/expose-an-http-service-from-a-cluster), also add a DNS record for `*.omni.laskonet.com` to DNS, also pointing to the IP of the host Omni is running on.
 
 
 ## Certificate Management
@@ -37,7 +37,7 @@ Talos can be installed on nodes via ISO, but doing it via PXEBoot is so much nic
 The cluster is managed from the CLI using [omnictl](https://omni.siderolabs.com/how-to-guides/install-and-configure-omnictl) and [talosctl](https://www.talos.dev/v1.9/learn-more/talosctl/). While cluster operations can be performed from the Omni UI, I think its better to do so from the CLI for a declarative approach and get away from "click-ops".
 For my deployment, the installation/configuration of these tools is managed via [NixOS](https://github.com/kenlasko/nixos-wsl), but the manual steps are included here for those who haven't discovered NixOS yet.
 
-1. Download omnictl from https://omni.ucdialplans.com and put in proper locations on your workstation.
+1. Download omnictl from https://omni.laskonet.com and put in proper locations on your workstation.
 ```bash
 # Remove old version of talosctl, if present, then install latest version
 sudo rm /usr/local/bin/talosctl
@@ -49,7 +49,7 @@ sudo mv omnictl-linux-${ARCH_TYPE} /usr/local/bin/omnictl
 sudo chmod u+x /usr/local/bin/omnictl
 ```
 
-2. Download omniconfig.yaml and talosconfig.yaml from omni.ucdialplans.com and put in proper locations on your workstation.
+2. Download omniconfig.yaml and talosconfig.yaml from omni.laskonet.com and put in proper locations on your workstation.
 ```bash
 mkdir -p ~/.config/omni/
 mkdir -p ~/.talos/
@@ -87,7 +87,7 @@ sudo apt install wslu -y
 ```
 
 # Omni cluster creation/update
-Make sure all nodes are up and running in maintenance mode and are visible in https://omni.ucdialplans.com. I did this via a [NetbootXYZ](https://github.com/kenlasko/docker-rpi1/netbootxyz) installation on the same Raspberry Pi node as my Omni installation.
+Make sure all nodes are up and running in maintenance mode and are visible in https://omni.laskonet.com. I did this via a [NetbootXYZ](https://github.com/kenlasko/docker-rpi1/netbootxyz) installation on the same Raspberry Pi node as my Omni installation.
 
 You will need to modify the machine GUIDs in [cluster-template-home.yaml](cluster-template-home.yaml) to suit your needs. I have multiple cluster templates for home, cloud and lab to test various things. You may not need all this.
 
@@ -125,7 +125,7 @@ users:
       args:
       - oidc-login
       - get-token
-      - --oidc-issuer-url=https://omni.ucdialplans.com/oidc
+      - --oidc-issuer-url=https://omni.laskonet.com/oidc
       - --oidc-client-id=native
       - --oidc-extra-scope=cluster:home
       - --skip-open-browser

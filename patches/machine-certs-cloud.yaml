@@ -1,5 +1,4 @@
 machine:
   certSANs:
-  - cloud-kube.ucdialplans.com
   - cloud-kube.laskonet.com
   - 192.18.153.11               # The Oracle load balancer IP
