@@ -29,6 +29,8 @@ patches:
   file: /home/ken/omni/patches/machine-hostusers.yaml
 - name: machine-network
   file: /home/ken/omni/patches/machine-network.yaml
+- name: machine-net-tuning
+  file: /home/ken/omni/patches/machine-net-tuning.yaml
 - name: kubelet
   file: /home/ken/omni/patches/machine-kubelet.yaml
 # - name: feature-gates
