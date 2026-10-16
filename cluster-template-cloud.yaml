@@ -1,7 +1,7 @@
 kind: Cluster
 name: cloud
 talos:
-  version: v1.14.2
+  version: v1.14.3
 kubernetes:
   version: 1.37.1
 features:
