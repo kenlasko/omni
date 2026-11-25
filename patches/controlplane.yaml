@@ -13,7 +13,10 @@ machine:
     - net.ifnames=0
   network:
     interfaces:
-    - interface: eth0
+    # Select the NIC by hardware, not name: UKI-booted nodes (e.g. nuc3) ignore
+    # install.extraKernelArgs, so net.ifnames=0 doesn't apply and the NIC is enpXsY, not eth0.
+    - deviceSelector:
+        physical: true
       dhcp: true
       # This enables KubeVIP functionality, which makes the Kube API available on the defined VIP
       # via https://<ipAddress>:6443
